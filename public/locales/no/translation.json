@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "menu": "Meny",
+    "brand": "Merker",
+    "guitar": "Gitarer",
+    "stringset": "Strengesett",
+    "dark": "Mørk",
+    "light": "Lys",
+    "system": "System",
+    "modeHelper": "Sett fargemodus",
+    "langHelper": "Velg språk",
+    "accountHelper": "Konto og instillinger",
+    "profile": "Profil",
+    "settings": "Instillinger",
+    "logout": "Logg ut",
+    "close": "Lukk"
+  },
+  "form": {
+    "loading": "Laster",
+    "waitPolite": "Vennelighst vent"
+  }
+}

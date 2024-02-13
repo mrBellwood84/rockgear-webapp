@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "menu": "Menu",
+    "brand": "Brands",
+    "guitar": "Guitars",
+    "stringset": "Stringsets",
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System",
+    "modeHelper": "Set colormode",
+    "langHelper": "Select language",
+    "accountHelper": "Account and settings",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout",
+    "close": "Close"
+  },
+  "form": {
+    "loading": "Loading",
+    "waitPolite": "Please wait..."
+  }
+}
