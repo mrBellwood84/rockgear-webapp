@@ -1,36 +1,47 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { ThemeModeSettingType, ThemeModeType } from "../../../theme";
+import { LanguageCodeTypes } from "../../locale/languages";
 
 const lsKey = "localSettings";
 
 const lsAgent = {
-  get: (): IAppSettings => {
+  get: (): ISettingState => {
     const data_str = localStorage.getItem(lsKey);
     if (!data_str) return defaultState;
-    const data: IAppSettings = JSON.parse(data_str);
+    const data: ISettingState = JSON.parse(data_str);
     return { ...defaultState, ...data };
   },
-  set: (data: IAppSettings): void => {
+  set: (data: ISettingState): void => {
     localStorage.setItem(lsKey, JSON.stringify(data));
   },
 };
 
-interface IAppSettings {
+interface ISettingState {
+  languageSelected: LanguageCodeTypes;
+  languageSelctedLoaded: boolean;
+
   themeModeSetting: ThemeModeSettingType;
   themeMode: ThemeModeType;
   themeSysPreferenceChecked: boolean;
 }
 
-const defaultState: IAppSettings = {
+const defaultState: ISettingState = {
+  languageSelected: "en",
+  languageSelctedLoaded: false,
+
   themeModeSetting: "system",
   themeMode: "light",
   themeSysPreferenceChecked: false,
 };
 
-export const appSettingsStore = createSlice({
-  name: "appSettings",
+export const settingsStore = createSlice({
+  name: "settings",
   initialState: lsAgent.get(),
   reducers: {
+    setCurrentLanguage: (state, action: PayloadAction<LanguageCodeTypes>) => {
+      state.languageSelected = action.payload;
+      state.languageSelctedLoaded = true;
+    },
     setThemeMode: (state, action: PayloadAction<ThemeModeType>) => {
       state.themeMode = action.payload;
       lsAgent.set(state);

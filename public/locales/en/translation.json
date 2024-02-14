@@ -15,8 +15,18 @@
     "logout": "Logout",
     "close": "Close"
   },
-  "form": {
+  "interactive": {
     "loading": "Loading",
-    "waitPolite": "Please wait..."
-  }
+    "waitPolite": "Please wait...",
+    "search": "Search",
+    "create": "Create",
+    "edit": "Edit",
+    "update": "Update",
+    "delete": "Delete"
+  },
+  "data": {
+    "brand": "Brand",
+    "brandPlural": "Brands"
+  },
+  "form": {}
 }

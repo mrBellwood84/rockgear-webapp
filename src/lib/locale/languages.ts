@@ -1,13 +1,15 @@
 import no from "flag-icons/flags/4x3/no.svg";
 import en from "flag-icons/flags/4x3/gb.svg";
 
-export interface ILanguage {
-  code: string;
+export type LanguageCodeTypes = "en" | "no" | string;
+
+export interface ILanguageSelectOption {
+  code: LanguageCodeTypes;
   name: string;
   svg: string;
 }
 
-export const supportedLanguages: ILanguage[] = [
+export const supportedLanguages: ILanguageSelectOption[] = [
   {
     code: "en",
     name: "English",
@@ -18,4 +20,4 @@ export const supportedLanguages: ILanguage[] = [
     name: "Norsk",
     svg: no,
   },
-].sort();
+];

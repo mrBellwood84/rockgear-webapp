@@ -7,12 +7,12 @@ import {
   Typography,
 } from "@mui/material";
 import { INavLink } from "../../lib/navlinks";
-import { useAppSelector } from "../../lib/redux/hooks";
+import { useAppSelector } from "../../lib/state/hooks";
 
 interface IProps extends INavLink {}
 
 export const DrawerItem = ({ textkey, href, iconPath }: IProps) => {
-  const theme = useAppSelector((state) => state.appSettings.themeMode);
+  const theme = useAppSelector((state) => state.settings.themeMode);
 
   return (
     <ListItem disablePadding>

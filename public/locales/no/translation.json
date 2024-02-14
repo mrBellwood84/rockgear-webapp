@@ -15,8 +15,18 @@
     "logout": "Logg ut",
     "close": "Lukk"
   },
-  "form": {
+  "interactive": {
     "loading": "Laster",
-    "waitPolite": "Vennelighst vent"
-  }
+    "waitPolite": "Vennligst vent",
+    "search": "Søk",
+    "create": "Opprett",
+    "edit": "Rediger",
+    "update": "Oppdater",
+    "delete": "Slett"
+  },
+  "data": {
+    "brand": "Merke",
+    "brandPlural": "Merker"
+  },
+  "form": {}
 }

@@ -15,9 +15,9 @@ import {
   LightMode,
   SettingsBrightness,
 } from "@mui/icons-material";
-import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
-import { appSettingsStore } from "../../lib/redux/slices/appSettings";
+import { useAppDispatch, useAppSelector } from "../../lib/state/hooks";
 import { useTranslation } from "react-i18next";
+import { settingsStore } from "../../lib/state/slices/settingState";
 
 interface IMenuItem {
   key: ThemeModeSettingType;
@@ -47,7 +47,7 @@ export const PaletteModeMenu = () => {
   const handleOpen = (e: MouseEvent<HTMLElement>) => setAnc(e.currentTarget);
   const handleClose = () => setAnc(null);
 
-  const settings = useAppSelector((state) => state.appSettings);
+  const settings = useAppSelector((state) => state.settings);
   const dispatch = useAppDispatch();
 
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -55,7 +55,7 @@ export const PaletteModeMenu = () => {
   const setPaletteMode = (mode: ThemeModeSettingType) => {
     const theme: ThemeModeType =
       mode === "system" ? (prefersDarkMode ? "dark" : "light") : mode;
-    dispatch(appSettingsStore.actions.setThemeMode(theme));
+    dispatch(settingsStore.actions.setThemeMode(theme));
   };
 
   const loadPageTheme = () => {
@@ -68,7 +68,7 @@ export const PaletteModeMenu = () => {
           : "light"
         : settings.themeModeSetting;
 
-    dispatch(appSettingsStore.actions.loadThemeMode(theme));
+    dispatch(settingsStore.actions.loadThemeMode(theme));
   };
 
   useEffect(() => {

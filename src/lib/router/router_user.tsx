@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import { HomeUser } from "../../app/user_pages/HomeUser";
 import { UserLayout } from "../../components/UserLayout";
-import { GuitarDashboard } from "../../app/user_pages/guitar/GuitarDashboard";
-import { StringsetDashboard } from "../../app/user_pages/stringset/StringsetDashboard";
-import { BrandDashboard } from "../../app/user_pages/brand/BrandDashboard";
+import { GuitarPages } from "../../app/user_pages/guitar/GuitarPages";
+import { BrandPages } from "../../app/user_pages/brand/BrandPages";
+import { StringsetPages } from "../../app/user_pages/stringset/StringsetPages";
 
 export const router_userpages = createBrowserRouter([
   {
@@ -16,15 +16,15 @@ export const router_userpages = createBrowserRouter([
       },
       {
         path: "/guitar",
-        element: <GuitarDashboard />,
+        element: <GuitarPages />,
       },
       {
         path: "/brand",
-        element: <BrandDashboard />,
+        element: <BrandPages />,
       },
       {
         path: "/stringset",
-        element: <StringsetDashboard />,
+        element: <StringsetPages />,
       },
     ],
   },
