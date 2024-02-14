@@ -9,19 +9,19 @@ export const navlinks_user: { primary: INavLink[]; secondary: INavLink[] } = {
     {
       textkey: "guitar",
       href: "/guitar",
-      iconPath: "",
+      iconPath: "/graphic/drawer/guitar.png",
     },
   ],
   secondary: [
     {
       textkey: "brand",
       href: "/brand",
-      iconPath: "",
+      iconPath: "/graphic/drawer/brand.png",
     },
     {
       textkey: "stringset",
       href: "/stringset",
-      iconPath: "",
+      iconPath: "/graphic/drawer/stringset.png",
     },
   ],
 };

@@ -7,11 +7,13 @@ import {
   Typography,
 } from "@mui/material";
 import { INavLink } from "../../lib/navlinks";
-import { dark } from "@mui/material/styles/createPalette";
+import { useAppSelector } from "../../lib/redux/hooks";
 
 interface IProps extends INavLink {}
 
 export const DrawerItem = ({ textkey, href, iconPath }: IProps) => {
+  const theme = useAppSelector((state) => state.appSettings.themeMode);
+
   return (
     <ListItem disablePadding>
       <ListItemButton component="a" href={href} sx={{ pl: 3, pr: 6 }}>
@@ -20,7 +22,7 @@ export const DrawerItem = ({ textkey, href, iconPath }: IProps) => {
             alt={textkey}
             src={iconPath}
             variant="square"
-            sx={{ filter: dark ? "invert()" : "none" }}
+            sx={{ filter: theme === "dark" ? "invert()" : "none" }}
           />
         </ListItemAvatar>
         <ListItemText>

@@ -16,7 +16,6 @@ export const App = () => {
   const theme = settings.themeMode === "light" ? lightTheme : darkTheme;
 
   console.warn("DEV :: User session set by static value");
-  console.warn("DEV :: Suspense fallback is text only");
 
   return (
     <ThemeProvider theme={theme}>
