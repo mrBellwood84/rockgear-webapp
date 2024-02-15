@@ -4,13 +4,15 @@ import { BrandViewTypes } from "../../types/viewTypes";
 import { sortByName } from "../../sortAlgoritms";
 
 interface IBrandState {
-  brands: IBrand[];
+  allBrands: IBrand[];
+  brandsFiltered: IBrand[];
   selectedBrand: IBrand | null;
   currentBrandView: BrandViewTypes;
 }
 
 const initialState: IBrandState = {
-  brands: [],
+  allBrands: [],
+  brandsFiltered: [],
   selectedBrand: null,
   currentBrandView: "load",
 };
@@ -20,10 +22,37 @@ export const brandStore = createSlice({
   initialState,
   reducers: {
     /** Set brand data in state. Replace whole data array! */
-    setBrandData: (state, action: PayloadAction<IBrand[]>) => {
+    addAllBrands: (state, action: PayloadAction<IBrand[]>) => {
       state.currentBrandView = "main";
-      state.brands = action.payload.sort(sortByName);
+      state.allBrands = action.payload;
+      state.brandsFiltered = state.allBrands.sort(sortByName);
     },
+    addSingleBrand: (state, action: PayloadAction<IBrand>) => {
+      state.allBrands.push(action.payload);
+      state.brandsFiltered = state.allBrands.sort(sortByName);
+      state.currentBrandView = "main";
+    },
+    updateSingleBrand: (state, action: PayloadAction<IBrand>) => {
+      state.allBrands = state.allBrands.map((brand) => {
+        if (brand.id === action.payload.id) return action.payload;
+        return brand;
+      });
+      state.brandsFiltered = state.allBrands.sort(sortByName);
+      state.currentBrandView = "main";
+    },
+    removeSingleBrand: (state, action: PayloadAction<string>) => {
+      state.allBrands = state.allBrands.filter((b) => b.id !== action.payload);
+      state.brandsFiltered = state.allBrands.sort(sortByName);
+    },
+
+    filterBrands: (state, action: PayloadAction<string>) => {
+      state.brandsFiltered = state.allBrands
+        .filter((x) =>
+          x.name.toLowerCase().includes(action.payload.toLowerCase())
+        )
+        .sort(sortByName);
+    },
+
     /** Set current view to main. Selected brand is set to null */
     displayBrandViewMain: (state) => {
       state.currentBrandView = "main";
@@ -38,6 +67,7 @@ export const brandStore = createSlice({
     displayEditBrand: (state, action: PayloadAction<IBrand>) => {
       state.selectedBrand = action.payload;
       state.currentBrandView = "edit";
+      console.log("Edit clicked", state.currentBrandView);
     },
     /** Change brand view in accorance with provided view string */
     changeBrandView: (state, action: PayloadAction<BrandViewTypes>) => {

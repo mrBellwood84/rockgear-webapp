@@ -20,13 +20,32 @@
     "waitPolite": "Vennligst vent",
     "search": "Søk",
     "create": "Opprett",
+    "createPresent": "Oppretter",
+    "createError": "En feil oppsto under oppretting!",
     "edit": "Rediger",
     "update": "Oppdater",
-    "delete": "Slett"
+    "updatePresent": "Oppdaterer",
+    "updateError": "En feil oppsto under oppdatering!",
+    "cancel": "Avbryt",
+    "delete": "Slett",
+    "deletePresent": "Sletter",
+    "deleteDialogTitle": "Vil du slette",
+    "deleteDialogText": "Dataen vil forsvinne for alltid dersom du bekrefter. Kryss av i boksen under for å aktivere sletteknappen.",
+    "deleteDialogConfirm": "Jeg vil slette!",
+    "deleteError": "En feil oppsto under sletting!"
   },
   "data": {
     "brand": "Merke",
-    "brandPlural": "Merker"
+    "brandPlural": "Merker",
+    "comment": "Kommentar",
+    "name": "Navn"
   },
-  "form": {}
+  "form": {
+    "language": "Språk",
+    "nameMissing": "Navn mangler"
+  },
+  "language": {
+    "no": "Norsk",
+    "en": "Engelsk"
+  }
 }

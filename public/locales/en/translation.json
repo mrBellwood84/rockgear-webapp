@@ -20,13 +20,32 @@
     "waitPolite": "Please wait...",
     "search": "Search",
     "create": "Create",
+    "createPresent": "Creating",
+    "createError": "An error occured when trying to create!",
     "edit": "Edit",
     "update": "Update",
-    "delete": "Delete"
+    "updatePresent": "Updating",
+    "updateError": "An error occured when trying to update!",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "deletePresent": "Deleting",
+    "deleteDialogTitle": "Do you want to delete!",
+    "deleteDialogText": "This data will be gone forever when you confirm. Click the checkbox below to enable delete button.",
+    "deleteDialogConfirm": "I want to delete!",
+    "deleteError": "An error occured when trying to delete"
   },
   "data": {
     "brand": "Brand",
-    "brandPlural": "Brands"
+    "brandPlural": "Brands",
+    "comment": "Comment",
+    "name": "Name"
   },
-  "form": {}
+  "form": {
+    "language": "Language",
+    "nameMissing": "Name missing"
+  },
+  "language": {
+    "no": "Norwegian",
+    "en": "English"
+  }
 }

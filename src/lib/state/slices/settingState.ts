@@ -18,7 +18,6 @@ const lsAgent = {
 
 interface ISettingState {
   languageSelected: LanguageCodeTypes;
-  languageSelctedLoaded: boolean;
 
   themeModeSetting: ThemeModeSettingType;
   themeMode: ThemeModeType;
@@ -26,9 +25,7 @@ interface ISettingState {
 }
 
 const defaultState: ISettingState = {
-  languageSelected: "en",
-  languageSelctedLoaded: false,
-
+  languageSelected: "",
   themeModeSetting: "system",
   themeMode: "light",
   themeSysPreferenceChecked: false,
@@ -40,7 +37,6 @@ export const settingsStore = createSlice({
   reducers: {
     setCurrentLanguage: (state, action: PayloadAction<LanguageCodeTypes>) => {
       state.languageSelected = action.payload;
-      state.languageSelctedLoaded = true;
     },
     setThemeMode: (state, action: PayloadAction<ThemeModeType>) => {
       state.themeMode = action.payload;

@@ -3,6 +3,7 @@ import { ITextLocale } from "../../models/ITextLocale";
 export const getLocaleText = (currentLang: string, locales: ITextLocale[]) => {
   const defaultLang = "en";
 
+  if (!locales) return null;
   if (locales.length === 0) return null;
 
   let i = locales.findIndex((l) => l.code === currentLang);
