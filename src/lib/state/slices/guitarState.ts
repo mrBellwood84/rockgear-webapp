@@ -44,6 +44,14 @@ export const guitarStore = createSlice({
       state.filteredData = state.allData.sort(sortByBrandName);
     },
 
+    filter: (state, action: PayloadAction<string>) => {
+      state.filteredData = state.allData
+        .filter((data) =>
+          data.brand.name.toLowerCase().includes(action.payload.toLowerCase())
+        )
+        .sort(sortByBrandName);
+    },
+
     displayAll: (state) => {
       state.currentView = "all";
       state.selected = null;

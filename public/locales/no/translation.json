@@ -37,6 +37,10 @@
   "data": {
     "brand": "Merke",
     "brandPlural": "Merker",
+    "guitar": "Gitar",
+    "guitarPlural": "Gitarer",
+    "stringset": "Strenger",
+    "stringsetPlural": "Strenger",
     "comment": "Kommentar",
     "name": "Navn"
   },

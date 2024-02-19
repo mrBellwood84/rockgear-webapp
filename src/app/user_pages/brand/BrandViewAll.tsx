@@ -1,13 +1,18 @@
 import { CardBox } from "../../../components/CardBox";
 import { BrandCard } from "../../../components/brand/BrandCard";
-import { ChangeEvent } from "react";
+import { ChangeEvent, Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "../../../lib/state/hooks";
 import { brandStore } from "../../../lib/state/slices/brandState";
+import { TopBar } from "../../../components/shared/TopBar";
+import { Button } from "@mui/material";
+import { Add } from "@mui/icons-material";
 
 export const BrandViewAll = () => {
+  const isAdmin = useAppSelector((state) => state.user.userRole) === "admin";
   const brandsFiltered = useAppSelector((state) => state.brand.filteredData);
-  const { t } = useTranslation();
+  const [dataT] = useTranslation("translation", { keyPrefix: "data" });
+  const [interT] = useTranslation("translation", { keyPrefix: "interactive" });
   const dispatch = useAppDispatch();
 
   const filterDataArr = (event: ChangeEvent<HTMLInputElement>) =>
@@ -16,14 +21,25 @@ export const BrandViewAll = () => {
   const createClick = () => dispatch(brandStore.actions.displayCreate());
 
   return (
-    <CardBox
-      title={t("data.brandPlural")}
-      searchFieldChange={filterDataArr}
-      addButtonClick={createClick}
-    >
-      {brandsFiltered.map((b) => (
-        <BrandCard key={b.id} brand={b} />
-      ))}
-    </CardBox>
+    <Fragment>
+      <TopBar title={dataT("brandPlural")}>
+        {isAdmin && (
+          <Button
+            variant="contained"
+            color="success"
+            startIcon={<Add />}
+            onClick={createClick}
+          >
+            {interT("create")}
+          </Button>
+        )}
+      </TopBar>
+
+      <CardBox searchFieldChange={filterDataArr}>
+        {brandsFiltered.map((b) => (
+          <BrandCard key={b.id} brand={b} />
+        ))}
+      </CardBox>
+    </Fragment>
   );
 };

@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { sortByName } from "../../sortAlgoritms";
+import { sortByBrandName, sortByName } from "../../sortAlgoritms";
 import { BaseViewTypes } from "../../types/viewTypes";
 import { IStringset } from "../../../models/stringset/IStringset";
 
@@ -47,9 +47,9 @@ export const stringsetStore = createSlice({
     filter: (state, action: PayloadAction<string>) => {
       state.filteredData = state.allData
         .filter((x) =>
-          x.name.toLowerCase().includes(action.payload.toLowerCase())
+          x.brand.name.toLowerCase().includes(action.payload.toLowerCase())
         )
-        .sort(sortByName);
+        .sort(sortByBrandName);
     },
 
     displayAll: (state) => {

@@ -37,6 +37,10 @@
   "data": {
     "brand": "Brand",
     "brandPlural": "Brands",
+    "guitar": "Guitar",
+    "guitarPlural": "Guitars",
+    "stringset": "Stringset",
+    "stringsetPlural": "Stringsets",
     "comment": "Comment",
     "name": "Name"
   },

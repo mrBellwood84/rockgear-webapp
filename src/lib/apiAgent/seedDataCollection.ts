@@ -214,7 +214,6 @@ export const guitarSeedData: IGuitar[] = [
     },
     model: "Dragster",
     serialNumber: "abc123",
-    nickname: "Davidson",
     description: [
       {
         id: "fc1ac04c-682c-44b0-be46-53cf2646ff58",
