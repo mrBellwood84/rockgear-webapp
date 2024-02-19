@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import { HomeUser } from "../../app/user_pages/HomeUser";
 import { UserLayout } from "../../components/UserLayout";
-import { GuitarPages } from "../../app/user_pages/guitar/GuitarPages";
-import { BrandPages } from "../../app/user_pages/brand/BrandPages";
-import { StringsetPages } from "../../app/user_pages/stringset/StringsetPages";
+import { GuitarViewResolver } from "../../app/user_pages/guitar/GuitarViewResolver";
+import { BrandViewResolver } from "../../app/user_pages/brand/BrandViewResolver";
+import { StringsetViewResolver } from "../../app/user_pages/stringset/StringsetViewResolver";
 
 export const router_userpages = createBrowserRouter([
   {
@@ -16,15 +16,15 @@ export const router_userpages = createBrowserRouter([
       },
       {
         path: "/guitar",
-        element: <GuitarPages />,
+        element: <GuitarViewResolver />,
       },
       {
         path: "/brand",
-        element: <BrandPages />,
+        element: <BrandViewResolver />,
       },
       {
         path: "/stringset",
-        element: <StringsetPages />,
+        element: <StringsetViewResolver />,
       },
     ],
   },

@@ -1,1 +1,1 @@
-export type BrandViewTypes = "load" | "main" | "create" | "edit";
+export type BaseViewTypes = "load" | "all" | "single" | "create";

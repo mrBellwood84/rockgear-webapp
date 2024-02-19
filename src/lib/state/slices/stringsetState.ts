@@ -1,38 +1,37 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { IBrand } from "../../../models/brand/IBrand";
 import { sortByName } from "../../sortAlgoritms";
 import { BaseViewTypes } from "../../types/viewTypes";
+import { IStringset } from "../../../models/stringset/IStringset";
 
-interface IBrandState {
-  allData: IBrand[];
-  filteredData: IBrand[];
-  selected: IBrand | null;
+interface IStringsetState {
+  allData: IStringset[];
+  filteredData: IStringset[];
+  selected: IStringset | null;
   currentView: BaseViewTypes;
 }
 
-const initialState: IBrandState = {
+const initialState: IStringsetState = {
   allData: [],
   filteredData: [],
   selected: null,
   currentView: "load",
 };
 
-export const brandStore = createSlice({
-  name: "brand",
+export const stringsetStore = createSlice({
+  name: "stringset",
   initialState,
   reducers: {
-    /** Set brand data in state. Replace whole data array! */
-    addAll: (state, action: PayloadAction<IBrand[]>) => {
+    addAll: (state, action: PayloadAction<IStringset[]>) => {
       state.currentView = "all";
       state.allData = action.payload;
       state.filteredData = state.allData.sort(sortByName);
     },
-    addSingle: (state, action: PayloadAction<IBrand>) => {
+    addSingle: (state, action: PayloadAction<IStringset>) => {
       state.allData.push(action.payload);
       state.filteredData = state.allData.sort(sortByName);
       state.currentView = "all";
     },
-    updateSingle: (state, action: PayloadAction<IBrand>) => {
+    updateSingle: (state, action: PayloadAction<IStringset>) => {
       state.allData = state.allData.map((brand) => {
         if (brand.id === action.payload.id) return action.payload;
         return brand;
@@ -53,22 +52,18 @@ export const brandStore = createSlice({
         .sort(sortByName);
     },
 
-    /** Set current view to all. Selected brand is set to null */
     displayAll: (state) => {
       state.currentView = "all";
       state.selected = null;
     },
-    /** Set current view to create. Sets selected brand to null */
     displayCreate: (state) => {
       state.currentView = "create";
       state.selected = null;
     },
-    /** Sets current view to edit. Require a selected brand to edit */
-    displaySingle: (state, action: PayloadAction<IBrand>) => {
+    displaySingle: (state, action: PayloadAction<IStringset>) => {
       state.selected = action.payload;
       state.currentView = "single";
     },
-    /** Change brand view in accorance with provided view string */
     changeCurrentView: (state, action: PayloadAction<BaseViewTypes>) => {
       state.currentView = action.payload;
     },

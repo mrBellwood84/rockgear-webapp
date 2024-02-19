@@ -1,3 +1,5 @@
+import { Box } from "@mui/material";
+
 export const HomeUser = () => {
-  return <div>Home sweet home</div>;
+  return <Box>Home page</Box>;
 };

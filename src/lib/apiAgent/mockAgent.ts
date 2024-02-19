@@ -1,9 +1,25 @@
 import { IBrand } from "../../models/brand/IBrand";
-
-type MockAgentGetAllType = IBrand[];
+import { IGuitar } from "../../models/guitar/IGuitar";
+import { IStringset } from "../../models/stringset/IStringset";
 
 export const mockAgent = {
-  getAll: (data: MockAgentGetAllType): Promise<MockAgentGetAllType> => {
+  getAllBrands: (data: IBrand[]): Promise<IBrand[]> => {
+    const timeout = Math.random() * 2000;
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(data);
+      }, timeout);
+    });
+  },
+  getAllGuitars: (data: IGuitar[]): Promise<IGuitar[]> => {
+    const timeout = Math.random() * 2000;
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(data);
+      }, timeout);
+    });
+  },
+  getAllStringsets: (data: IStringset[]): Promise<IStringset[]> => {
     const timeout = Math.random() * 2000;
     return new Promise((resolve) => {
       setTimeout(() => {

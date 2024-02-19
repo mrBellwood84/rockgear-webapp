@@ -23,7 +23,7 @@ interface IProps {
   children?: ReactNode;
 }
 
-export const CardsViewBox = ({
+export const CardBox = ({
   title,
   searchFieldChange,
   addButtonClick,

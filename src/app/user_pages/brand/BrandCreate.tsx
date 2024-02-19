@@ -6,14 +6,17 @@ import { brandStore } from "../../../lib/state/slices/brandState";
 import { ArrowBack } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 
-export const BrandCreateEditPage = () => {
+export const BrandCreate = () => {
   const [dataT] = useTranslation("translation", { keyPrefix: "data" });
   const [interT] = useTranslation("translation", { keyPrefix: "interactive" });
 
-  const selectedBrand = useAppSelector((state) => state.brand.selectedBrand);
+  const selectedBrand = useAppSelector((state) => state.brand.selected);
   const dispatch = useAppDispatch();
 
-  const toMainClick = () => dispatch(brandStore.actions.displayBrandViewMain());
+  const toMainClick = () => dispatch(brandStore.actions.displayAll());
+  console.warn(
+    "DEV :: BrandCreatePage.tsx has changed name, but file content is not updated"
+  );
 
   return (
     <Fragment>

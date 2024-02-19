@@ -1,10 +1,10 @@
-import { IBrand } from "../../models/brand/IBrand";
+import { IStringset } from "../../models/stringset/IStringset";
 import { mockAgent } from "./mockAgent";
-import { brandSeedData } from "./seedDataCollection";
+import { stringsetSeedData } from "./seedDataCollection";
 
-export const brandApiAgent = {
-  getAll: async (): Promise<IBrand[]> => {
-    return await mockAgent.getAllBrands(brandSeedData);
+export const stringsetApiAgent = {
+  getAll: async (): Promise<IStringset[]> => {
+    return await mockAgent.getAllStringsets(stringsetSeedData);
   },
   post: async (): Promise<boolean> => {
     return await mockAgent.noreturnTimeout();

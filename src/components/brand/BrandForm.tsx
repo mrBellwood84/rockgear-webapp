@@ -68,7 +68,7 @@ export const BrandForm = ({ brandData, sx }: IProps) => {
 
     const success = await brandApiAgent.post();
     if (success) {
-      dispatch(brandStore.actions.addSingleBrand(newData));
+      dispatch(brandStore.actions.addSingle(newData));
       return;
     }
 
@@ -87,7 +87,7 @@ export const BrandForm = ({ brandData, sx }: IProps) => {
 
     const success = await brandApiAgent.put();
     if (success) {
-      dispatch(brandStore.actions.updateSingleBrand(newData));
+      dispatch(brandStore.actions.updateSingle(newData));
       return;
     }
     setLoading(false);

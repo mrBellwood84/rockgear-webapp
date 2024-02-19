@@ -1,10 +1,10 @@
-import { IBrand } from "../../models/brand/IBrand";
+import { IGuitar } from "../../models/guitar/IGuitar";
 import { mockAgent } from "./mockAgent";
-import { brandSeedData } from "./seedDataCollection";
+import { guitarSeedData } from "./seedDataCollection";
 
-export const brandApiAgent = {
-  getAll: async (): Promise<IBrand[]> => {
-    return await mockAgent.getAllBrands(brandSeedData);
+export const GuitarApiAgent = {
+  getAll: async (): Promise<IGuitar[]> => {
+    return await mockAgent.getAllGuitars(guitarSeedData);
   },
   post: async (): Promise<boolean> => {
     return await mockAgent.noreturnTimeout();

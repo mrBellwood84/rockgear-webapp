@@ -1,14 +1,14 @@
 import { useEffect, useRef } from "react";
 import { ContainerLoader } from "../../../components/loaders/ContainerLoader";
 import { useAppDispatch, useAppSelector } from "../../../lib/state/hooks";
-import { BrandViewAllPage } from "./BrandViewAllPage";
 import { brandApiAgent } from "../../../lib/apiAgent/brandApiAgent";
 import { brandStore } from "../../../lib/state/slices/brandState";
-import { BrandCreateEditPage } from "./BrandCreateEditPage";
+import { BrandViewSingle } from "./BrandViewSingle";
+import { BrandCreate } from "./BrandCreate";
+import { BrandViewAll } from "./BrandViewAll";
 
-export const BrandPages = () => {
-  const currentView = useAppSelector((state) => state.brand.currentBrandView);
-  const userRole = useAppSelector((state) => state.user.userRole);
+export const BrandViewResolver = () => {
+  const currentView = useAppSelector((state) => state.brand.currentView);
   const apiCalled = useRef<boolean>(false);
   const dispatch = useAppDispatch();
 
@@ -16,7 +16,7 @@ export const BrandPages = () => {
     if (apiCalled.current) return;
     apiCalled.current = true;
     const data = await brandApiAgent.getAll();
-    dispatch(brandStore.actions.addAllBrands(data));
+    dispatch(brandStore.actions.addAll(data));
     console.warn(
       "DEV :: Brand data called from mock api. This message was sent from lowest level..."
     );
@@ -29,13 +29,11 @@ export const BrandPages = () => {
   switch (currentView) {
     case "load":
       return <ContainerLoader />;
+    case "single":
+      return <BrandViewSingle />;
     case "create":
-      if (userRole === "admin") return <BrandCreateEditPage />;
-      return <BrandViewAllPage />;
-    case "edit":
-      if (userRole === "admin") return <BrandCreateEditPage />;
-      return <BrandViewAllPage />;
+      return <BrandCreate />;
     default:
-      return <BrandViewAllPage />;
+      return <BrandViewAll />;
   }
 };

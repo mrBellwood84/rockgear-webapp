@@ -44,7 +44,7 @@ export const BrandCard = ({ brand }: IProps) => {
     useState<boolean>(false);
 
   const editClick = () => {
-    dispatch(brandStore.actions.displayEditBrand(brand));
+    dispatch(brandStore.actions.displaySingle(brand));
   };
 
   const deleteClick = () => setDeletedialogOpen(true);
@@ -60,7 +60,7 @@ export const BrandCard = ({ brand }: IProps) => {
       setShowDeleteErrorAlert(true);
       return;
     }
-    dispatch(brandStore.actions.removeSingleBrand(brand.id));
+    dispatch(brandStore.actions.removeSingle(brand.id));
   };
 
   if (deleteSpinner)
