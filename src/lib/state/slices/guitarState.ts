@@ -46,9 +46,23 @@ export const guitarStore = createSlice({
 
     filter: (state, action: PayloadAction<string>) => {
       state.filteredData = state.allData
-        .filter((data) =>
-          data.brand.name.toLowerCase().includes(action.payload.toLowerCase())
-        )
+        .filter((x) => {
+          const term = action.payload.toLowerCase();
+
+          const alt_1 = x.brand.name.toLowerCase();
+          const alt_2 = x.model.toLowerCase();
+          const alt_3 = x.nickname ? x.nickname.toLowerCase() : "";
+          const alt_4 = x.serialNumber.toLowerCase();
+          const alt_5 = `${alt_1} ${alt_2}`;
+
+          if (alt_1.includes(term)) return x;
+          if (alt_2.includes(term)) return x;
+          if (alt_3.includes(term)) return x;
+          if (alt_4.includes(term)) return x;
+          if (alt_5.includes(term)) return x;
+
+          return null;
+        })
         .sort(sortByBrandName);
     },
 

@@ -47,10 +47,14 @@ export const brandStore = createSlice({
 
     filter: (state, action: PayloadAction<string>) => {
       state.filteredData = state.allData
-        .filter((x) =>
-          x.name.toLowerCase().includes(action.payload.toLowerCase())
-        )
+        .filter((x) => {
+          const term = action.payload.toLowerCase();
+          const alt_1 = x.name.toLowerCase();
+          if (alt_1.includes(term)) return x;
+          return null;
+        })
         .sort(sortByName);
+      console.log(state.filteredData);
     },
 
     /** Set current view to all. Selected brand is set to null */

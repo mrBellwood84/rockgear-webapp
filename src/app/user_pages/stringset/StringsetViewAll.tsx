@@ -1,12 +1,14 @@
 import { ChangeEvent, Fragment } from "react";
-import { TopBar } from "../../../components/shared/TopBar";
+import { TopbarPage } from "../../../components/shared/TopbarPage";
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../../lib/state/hooks";
-import { Button, Grid } from "@mui/material";
+import { Button, Divider, Grid, List } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import { stringsetStore } from "../../../lib/state/slices/stringsetState";
 import { StringsetCard } from "../../../components/stringset/StringsetCard";
+import { StringsetListItem } from "../../../components/stringset/StringsetListItem";
+import { ToolbarPage } from "../../../components/shared/ToolbarPage";
 
 export const StringsetViewAll = () => {
   const [dataT] = useTranslation("translation", { keyPrefix: "data" });
@@ -17,12 +19,12 @@ export const StringsetViewAll = () => {
 
   const createClick = () => dispatch(stringsetStore.actions.displayCreate());
 
-  const searchFilter = (event: ChangeEvent<HTMLInputElement>) =>
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>) =>
     dispatch(stringsetStore.actions.filter(event.currentTarget.value));
 
   return (
     <Fragment>
-      <TopBar title={dataT("stringsetPlural")} searchFieldChange={searchFilter}>
+      <TopbarPage title={dataT("stringsetPlural")}>
         {isAdmin && (
           <Button
             variant="contained"
@@ -33,12 +35,21 @@ export const StringsetViewAll = () => {
             {interT("create")}
           </Button>
         )}
-      </TopBar>
-      <Grid container spacing={1}>
+      </TopbarPage>
+      <Divider />
+      <ToolbarPage searchFieldChange={handleSearch} />
+
+      <Grid container spacing={1} sx={{ display: { xs: "none", sm: "flex" } }}>
         {filtered.map((ss) => (
           <StringsetCard key={ss.id} stringset={ss} />
         ))}
       </Grid>
+
+      <List sx={{ display: { xs: "block", sm: "none" } }}>
+        {filtered.map((ss) => (
+          <StringsetListItem key={ss.id} stringset={ss} />
+        ))}
+      </List>
     </Fragment>
   );
 };

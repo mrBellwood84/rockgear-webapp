@@ -46,9 +46,22 @@ export const stringsetStore = createSlice({
 
     filter: (state, action: PayloadAction<string>) => {
       state.filteredData = state.allData
-        .filter((x) =>
-          x.brand.name.toLowerCase().includes(action.payload.toLowerCase())
-        )
+        .filter((x) => {
+          const term = action.payload.toLowerCase();
+          const alt_1 = x.brand.name.toLowerCase();
+          const alt_2 = x.name.toLowerCase();
+          const alt_3 = x.gauges.toLocaleLowerCase();
+          const alt_4 = `${alt_1} ${alt_2}`;
+          const alt_5 = `${alt_1} ${alt_3}`;
+
+          if (alt_1.includes(term)) return x;
+          if (alt_2.includes(term)) return x;
+          if (alt_3.includes(term)) return x;
+          if (alt_4.includes(term)) return x;
+          if (alt_5.includes(term)) return x;
+
+          return undefined;
+        })
         .sort(sortByBrandName);
     },
 
