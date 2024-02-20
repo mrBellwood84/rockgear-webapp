@@ -34,10 +34,6 @@ export const CardBase = ({
           md: "33.3%",
           lg: "25%",
         },
-        display: {
-          xs: "none",
-          sm: "block",
-        },
         minHeight: minCardHeight,
         ...sx,
       }}
@@ -45,7 +41,7 @@ export const CardBase = ({
       <Card sx={{ height: "inherit" }}>
         <Skeleton variant="rectangular" height={150} />
         <CardContent>
-          <Typography variant="h5" component="div">
+          <Typography variant="h5" fontWeight={600} component="div">
             {largeTitle}
           </Typography>
           <Typography variant="subtitle1" fontWeight={600} component="div">

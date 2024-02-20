@@ -4,9 +4,8 @@ import { useAppSelector } from "../../../lib/state/hooks";
 import { ChangeEvent, Fragment } from "react";
 import { guitarStore } from "../../../lib/state/slices/guitarState";
 import { TopBar } from "../../../components/shared/TopBar";
-import { Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { Add } from "@mui/icons-material";
-import { CardBox } from "../../../components/CardBox";
 import { GuitarCard } from "../../../components/guitar/GuitarCard";
 
 export const GuitarViewAll = () => {
@@ -22,7 +21,7 @@ export const GuitarViewAll = () => {
 
   return (
     <Fragment>
-      <TopBar title={dataT("guitarPlural")}>
+      <TopBar title={dataT("guitarPlural")} searchFieldChange={searchFilter}>
         <Button
           variant="contained"
           color="primary"
@@ -32,11 +31,12 @@ export const GuitarViewAll = () => {
           {interT("create")}
         </Button>
       </TopBar>
-      <CardBox searchFieldChange={searchFilter}>
+
+      <Grid container spacing={1}>
         {filtered.map((g) => (
           <GuitarCard key={g.id} guitar={g} />
         ))}
-      </CardBox>
+      </Grid>
     </Fragment>
   );
 };

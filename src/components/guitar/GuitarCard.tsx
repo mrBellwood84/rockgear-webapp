@@ -10,7 +10,7 @@ interface IProps {
 export const GuitarCard = ({ guitar }: IProps) => {
   const lang = useAppSelector((state) => state.settings.languageSelected);
 
-  const mainTitle = guitar.nickname ? `"${guitar.nickname}"` : "...";
+  const mainTitle = guitar.nickname ? guitar.nickname : "";
   const secondTitle = `${guitar.brand.name} ${guitar.model}`;
 
   return (

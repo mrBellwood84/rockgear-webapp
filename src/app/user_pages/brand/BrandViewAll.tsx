@@ -1,11 +1,10 @@
-import { CardBox } from "../../../components/CardBox";
 import { BrandCard } from "../../../components/brand/BrandCard";
 import { ChangeEvent, Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "../../../lib/state/hooks";
 import { brandStore } from "../../../lib/state/slices/brandState";
 import { TopBar } from "../../../components/shared/TopBar";
-import { Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { Add } from "@mui/icons-material";
 
 export const BrandViewAll = () => {
@@ -22,7 +21,7 @@ export const BrandViewAll = () => {
 
   return (
     <Fragment>
-      <TopBar title={dataT("brandPlural")}>
+      <TopBar title={dataT("brandPlural")} searchFieldChange={filterDataArr}>
         {isAdmin && (
           <Button
             variant="contained"
@@ -35,11 +34,11 @@ export const BrandViewAll = () => {
         )}
       </TopBar>
 
-      <CardBox searchFieldChange={filterDataArr}>
+      <Grid container spacing={1}>
         {brandsFiltered.map((b) => (
           <BrandCard key={b.id} brand={b} />
         ))}
-      </CardBox>
+      </Grid>
     </Fragment>
   );
 };

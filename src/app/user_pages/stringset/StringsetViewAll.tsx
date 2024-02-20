@@ -2,11 +2,10 @@ import { ChangeEvent, Fragment } from "react";
 import { TopBar } from "../../../components/shared/TopBar";
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../../lib/state/hooks";
-import { Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import { stringsetStore } from "../../../lib/state/slices/stringsetState";
-import { CardBox } from "../../../components/CardBox";
 import { StringsetCard } from "../../../components/stringset/StringsetCard";
 
 export const StringsetViewAll = () => {
@@ -23,7 +22,7 @@ export const StringsetViewAll = () => {
 
   return (
     <Fragment>
-      <TopBar title={dataT("stringsetPlural")}>
+      <TopBar title={dataT("stringsetPlural")} searchFieldChange={searchFilter}>
         {isAdmin && (
           <Button
             variant="contained"
@@ -35,11 +34,11 @@ export const StringsetViewAll = () => {
           </Button>
         )}
       </TopBar>
-      <CardBox searchFieldChange={searchFilter}>
+      <Grid container spacing={1}>
         {filtered.map((ss) => (
           <StringsetCard key={ss.id} stringset={ss} />
         ))}
-      </CardBox>
+      </Grid>
     </Fragment>
   );
 };
