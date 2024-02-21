@@ -4,17 +4,17 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { brandApiAgent } from "../../lib/apiAgent/brandApiAgent";
 import { brandStore } from "../../lib/state/slices/brandState";
 import { IBrand } from "../../models/brand/IBrand";
+import { useTranslation } from "react-i18next";
 
 interface IProps {
   id: string;
-  label: string;
-  errorMsg?: string;
 }
 
-export const BrandSelect = ({ id, label, errorMsg }: IProps) => {
+export const BrandSelect = ({ id }: IProps) => {
   const [loading, isLoading] = useState<boolean>(true);
   const dataLoaded = useRef<boolean>(false);
 
+  const { t } = useTranslation("translation");
   const brands = useAppSelector((state) => state.brand.allData);
   const dispatch = useAppDispatch();
 
@@ -51,10 +51,9 @@ export const BrandSelect = ({ id, label, errorMsg }: IProps) => {
       }}
       renderInput={(params) => (
         <TextField
-          label={label}
+          label={t("data.brand")}
           variant="standard"
           margin="dense"
-          helperText={errorMsg}
           {...params}
           InputProps={{
             ...params.InputProps,

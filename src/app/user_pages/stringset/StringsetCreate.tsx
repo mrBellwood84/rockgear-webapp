@@ -3,6 +3,7 @@ import { useAppDispatch } from "../../../lib/state/hooks";
 import { stringsetStore } from "../../../lib/state/slices/stringsetState";
 import { Fragment } from "react";
 import { TopbarPage } from "../../../components/shared/TopbarPage";
+import { StringsetForm } from "../../../components/stringset/StringsetForm";
 
 export const StringsetCreate = () => {
   const { t } = useTranslation("translation");
@@ -15,6 +16,7 @@ export const StringsetCreate = () => {
   return (
     <Fragment>
       <TopbarPage title={title} navBack={toMainClick} />
+      <StringsetForm />
     </Fragment>
   );
 };

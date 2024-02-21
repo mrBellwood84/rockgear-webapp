@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { TopbarPage } from "../../../components/shared/TopbarPage";
 import { useAppDispatch } from "../../../lib/state/hooks";
 import { guitarStore } from "../../../lib/state/slices/guitarState";
+import { GuitarForm } from "../../../components/guitar/GuitarForm";
 
 export const GuitarCreate = () => {
   const { t } = useTranslation("translation");
@@ -15,6 +16,7 @@ export const GuitarCreate = () => {
   return (
     <Fragment>
       <TopbarPage title={title} navBack={toMainClick} />
+      <GuitarForm />
     </Fragment>
   );
 };

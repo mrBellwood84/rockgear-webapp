@@ -37,16 +37,24 @@
   "data": {
     "brand": "Merke",
     "brandPlural": "Merker",
+    "gauges": "Tykkelser",
     "guitar": "Gitar",
     "guitarPlural": "Gitarer",
     "stringset": "Strengesett",
     "stringsetPlural": "Strengesett",
-    "comment": "Kommentar",
-    "name": "Navn"
+    "description": "Beskrivelse",
+    "name": "Navn",
+    "model": "Modell",
+    "serialnumber": "Serienummer",
+    "nickname": "Klengenavn"
   },
   "form": {
+    "gaugesMissing": "Tykkelse mangler",
     "language": "Språk",
-    "nameMissing": "Navn mangler"
+    "nameMissing": "Navn mangler",
+    "modelMissing": "Model mangler",
+    "serialnumberMissing": "Serienummer mangler",
+    "brandMissing": "Merke mangler"
   },
   "language": {
     "no": "Norsk",

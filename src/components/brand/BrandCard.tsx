@@ -13,7 +13,7 @@ export const BrandCard = ({ brand }: IProps) => {
   return (
     <CardBase
       largeTitle={brand.name}
-      text={brand.comment && getLocaleText(lang, brand.comment)}
+      text={brand.description && getLocaleText(lang, brand.description)}
     />
   );
 };

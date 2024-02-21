@@ -16,7 +16,6 @@ export const BrandCreate = () => {
   return (
     <Fragment>
       <TopbarPage title={title} navBack={toMainClick} />
-
       <BrandForm />
     </Fragment>
   );

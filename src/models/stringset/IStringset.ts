@@ -6,5 +6,5 @@ export interface IStringset {
   brand: IBrand;
   name: string;
   gauges: string;
-  comments?: ITextLocale[];
+  description?: ITextLocale[];
 }

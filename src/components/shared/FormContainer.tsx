@@ -33,6 +33,7 @@ export const FormContainer = ({
   return (
     <Box
       sx={{
+        mt: 2,
         width: "100%",
         height: "max-content",
         display: "flex",

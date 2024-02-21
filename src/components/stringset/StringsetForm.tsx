@@ -1,29 +1,26 @@
-import { TextField } from "@mui/material";
-import { IBrand } from "../../models/brand/IBrand";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { ITextLocale } from "../../models/ITextLocale";
 import { IAlertMessage } from "../../lib/types/alertTypes";
-import { brandApiAgent } from "../../lib/apiAgent/brandApiAgent";
-import { useAppDispatch } from "../../lib/state/hooks";
-import { brandStore } from "../../lib/state/slices/brandState";
-import { v4 } from "uuid";
-import { useState } from "react";
-import { LocaleFormInput } from "../shared/LocaleFormInput";
+import { ITextLocale } from "../../models/ITextLocale";
+import { IBrand } from "../../models/brand/IBrand";
 import { FormContainer } from "../shared/FormContainer";
+import { LocaleFormInput } from "../shared/LocaleFormInput";
+import { TextField } from "@mui/material";
+import { BrandSelect } from "../brand/BrandSelect";
 
 interface FormValues {
+  brand: IBrand;
   name: string;
-  description: ITextLocale[];
+  gauges: string;
+  description?: ITextLocale[];
 }
 
-export const BrandForm = () => {
+export const StringsetForm = () => {
   const { t } = useTranslation("translation");
 
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading] = useState<boolean>(false);
   const [alert, setAlert] = useState<IAlertMessage | null>(null);
-
-  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -37,23 +34,8 @@ export const BrandForm = () => {
     setValue("description", filtered);
   };
 
-  const createBrand: SubmitHandler<FormValues> = async (data) => {
-    setLoading(true);
-
-    const newData: IBrand = {
-      id: v4(),
-      name: data.name,
-      description: data.description,
-    };
-
-    const success = await brandApiAgent.post();
-    if (success) {
-      dispatch(brandStore.actions.addSingle(newData));
-      return;
-    }
-
-    setLoading(false);
-    setAlert({ type: "error", message: "createError" });
+  const createStringset: SubmitHandler<FormValues> = async (data) => {
+    console.log(data);
   };
 
   return (
@@ -61,10 +43,12 @@ export const BrandForm = () => {
       loading={loading}
       alert={alert}
       removeAlert={() => setAlert(null)}
-      onSubmit={handleSubmit(createBrand)}
+      onSubmit={handleSubmit(createStringset)}
     >
+      <BrandSelect id="stringset-brand" />
+
       <TextField
-        id="brand-name"
+        id="stringset-name"
         label={t("data.name")}
         variant="standard"
         margin="dense"
@@ -73,8 +57,18 @@ export const BrandForm = () => {
         helperText={errors.name && t("form.nameMissing")}
       />
 
+      <TextField
+        id="stringset-gauges"
+        label={t("data.gauges")}
+        variant="standard"
+        margin="dense"
+        fullWidth
+        {...register("gauges", { required: true })}
+        helperText={errors.gauges && t("form.gaugesMissing")}
+      />
+
       <LocaleFormInput
-        elemId="brand-note-locale"
+        elemId="stringset-description-locale"
         label={t("data.description")}
         setFormValues={updateNoteLocales}
       />

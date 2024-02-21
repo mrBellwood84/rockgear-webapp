@@ -37,16 +37,24 @@
   "data": {
     "brand": "Brand",
     "brandPlural": "Brands",
+    "gauges": "Gauges",
     "guitar": "Guitar",
     "guitarPlural": "Guitars",
     "stringset": "Stringset",
     "stringsetPlural": "Stringsets",
-    "comment": "Comment",
-    "name": "Name"
+    "description": "Description",
+    "name": "Name",
+    "model": "Model",
+    "serialnumber": "Serialnumber",
+    "nickname": "Nickname"
   },
   "form": {
+    "gaugesMissing": "Gauges are missing",
     "language": "Language",
-    "nameMissing": "Name missing"
+    "nameMissing": "Name missing",
+    "modelMissing": "Model missing",
+    "serialnumberMissing": "Serialnumber missing",
+    "brandMissing": "Brand missing"
   },
   "language": {
     "no": "Norwegian",
