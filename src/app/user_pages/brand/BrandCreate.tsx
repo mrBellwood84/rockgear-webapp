@@ -6,19 +6,16 @@ import { useTranslation } from "react-i18next";
 import { TopbarPage } from "../../../components/shared/TopbarPage";
 
 export const BrandCreate = () => {
-  const [dataT] = useTranslation("translation", { keyPrefix: "data" });
-  const [interT] = useTranslation("translation", { keyPrefix: "interactive" });
-
+  const { t } = useTranslation("translation");
   const dispatch = useAppDispatch();
+
+  const title = `${t("interactive.create")} ${t("data.brand")}`;
 
   const toMainClick = () => dispatch(brandStore.actions.displayAll());
 
   return (
     <Fragment>
-      <TopbarPage
-        title={`${interT("create")} ${dataT("brand")}`}
-        navBack={toMainClick}
-      />
+      <TopbarPage title={title} navBack={toMainClick} />
 
       <BrandForm />
     </Fragment>

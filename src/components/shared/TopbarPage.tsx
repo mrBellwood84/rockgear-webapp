@@ -1,5 +1,5 @@
 import { ArrowBack } from "@mui/icons-material";
-import { Box, IconButton, Toolbar, Typography } from "@mui/material";
+import { Box, Divider, IconButton, Toolbar, Typography } from "@mui/material";
 import { Fragment, ReactNode } from "react";
 
 interface IProps {
@@ -30,6 +30,7 @@ export const TopbarPage = ({ title, navBack, children }: IProps) => {
         </Typography>
         {children && <Box>{children}</Box>}
       </Toolbar>
+      <Divider />
     </Fragment>
   );
 };

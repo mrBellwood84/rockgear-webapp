@@ -3,7 +3,7 @@ import { ChangeEvent, Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "../../../lib/state/hooks";
 import { brandStore } from "../../../lib/state/slices/brandState";
-import { Divider, Grid, List } from "@mui/material";
+import { Grid, List } from "@mui/material";
 import { BrandListItem } from "../../../components/brand/BrandListItem";
 import { TopbarPage } from "../../../components/shared/TopbarPage";
 import { ToolbarPage } from "../../../components/shared/ToolbarPage";
@@ -28,7 +28,6 @@ export const BrandViewAll = () => {
           <AddButtonResponsive title={interT("create")} onClick={createClick} />
         )}
       </TopbarPage>
-      <Divider />
       <ToolbarPage searchFieldChange={handleSearch} />
 
       <Grid container spacing={1} sx={{ display: { xs: "none", sm: "flex" } }}>

@@ -4,7 +4,7 @@ import { useAppSelector } from "../../../lib/state/hooks";
 import { ChangeEvent, Fragment } from "react";
 import { guitarStore } from "../../../lib/state/slices/guitarState";
 import { TopbarPage } from "../../../components/shared/TopbarPage";
-import { Divider, Grid, List } from "@mui/material";
+import { Grid, List } from "@mui/material";
 import { GuitarCard } from "../../../components/guitar/GuitarCard";
 import { GuitarListItem } from "../../../components/guitar/GuitarListItem";
 import { ToolbarPage } from "../../../components/shared/ToolbarPage";
@@ -26,8 +26,6 @@ export const GuitarViewAll = () => {
       <TopbarPage title={dataT("guitarPlural")}>
         <AddButtonResponsive title={interT("create")} onClick={createClick} />
       </TopbarPage>
-
-      <Divider />
 
       <ToolbarPage searchFieldChange={searchFilter} />
 

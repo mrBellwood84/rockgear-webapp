@@ -2,7 +2,7 @@ import { ChangeEvent, Fragment } from "react";
 import { TopbarPage } from "../../../components/shared/TopbarPage";
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../../lib/state/hooks";
-import { Divider, Grid, List } from "@mui/material";
+import { Grid, List } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { stringsetStore } from "../../../lib/state/slices/stringsetState";
 import { StringsetCard } from "../../../components/stringset/StringsetCard";
@@ -29,8 +29,6 @@ export const StringsetViewAll = () => {
           <AddButtonResponsive title={interT("create")} onClick={createClick} />
         )}
       </TopbarPage>
-
-      <Divider />
 
       <ToolbarPage searchFieldChange={handleSearch} />
 
