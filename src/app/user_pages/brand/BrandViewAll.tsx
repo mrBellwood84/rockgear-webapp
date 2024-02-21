@@ -3,11 +3,11 @@ import { ChangeEvent, Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "../../../lib/state/hooks";
 import { brandStore } from "../../../lib/state/slices/brandState";
-import { Button, Divider, Grid, List } from "@mui/material";
-import { Add } from "@mui/icons-material";
+import { Divider, Grid, List } from "@mui/material";
 import { BrandListItem } from "../../../components/brand/BrandListItem";
 import { TopbarPage } from "../../../components/shared/TopbarPage";
 import { ToolbarPage } from "../../../components/shared/ToolbarPage";
+import { AddButtonResponsive } from "../../../components/shared/AddButtonResponsive";
 
 export const BrandViewAll = () => {
   const isAdmin = useAppSelector((state) => state.user.userRole) === "admin";
@@ -25,14 +25,7 @@ export const BrandViewAll = () => {
     <Fragment>
       <TopbarPage title={dataT("brandPlural")}>
         {isAdmin && (
-          <Button
-            variant="contained"
-            color="primary"
-            startIcon={<Add />}
-            onClick={createClick}
-          >
-            {interT("create")}
-          </Button>
+          <AddButtonResponsive title={interT("create")} onClick={createClick} />
         )}
       </TopbarPage>
       <Divider />

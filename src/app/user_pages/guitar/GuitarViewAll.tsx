@@ -4,11 +4,11 @@ import { useAppSelector } from "../../../lib/state/hooks";
 import { ChangeEvent, Fragment } from "react";
 import { guitarStore } from "../../../lib/state/slices/guitarState";
 import { TopbarPage } from "../../../components/shared/TopbarPage";
-import { Button, Divider, Grid, List } from "@mui/material";
-import { Add } from "@mui/icons-material";
+import { Divider, Grid, List } from "@mui/material";
 import { GuitarCard } from "../../../components/guitar/GuitarCard";
 import { GuitarListItem } from "../../../components/guitar/GuitarListItem";
 import { ToolbarPage } from "../../../components/shared/ToolbarPage";
+import { AddButtonResponsive } from "../../../components/shared/AddButtonResponsive";
 
 export const GuitarViewAll = () => {
   const [dataT] = useTranslation("translation", { keyPrefix: "data" });
@@ -24,16 +24,11 @@ export const GuitarViewAll = () => {
   return (
     <Fragment>
       <TopbarPage title={dataT("guitarPlural")}>
-        <Button
-          variant="contained"
-          color="primary"
-          startIcon={<Add />}
-          onClick={createClick}
-        >
-          {interT("create")}
-        </Button>
+        <AddButtonResponsive title={interT("create")} onClick={createClick} />
       </TopbarPage>
+
       <Divider />
+
       <ToolbarPage searchFieldChange={searchFilter} />
 
       <Grid container spacing={1} sx={{ display: { xs: "none", sm: "flex" } }}>

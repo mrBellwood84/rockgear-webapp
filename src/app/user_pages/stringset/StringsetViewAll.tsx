@@ -2,13 +2,13 @@ import { ChangeEvent, Fragment } from "react";
 import { TopbarPage } from "../../../components/shared/TopbarPage";
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../../lib/state/hooks";
-import { Button, Divider, Grid, List } from "@mui/material";
-import { Add } from "@mui/icons-material";
+import { Divider, Grid, List } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { stringsetStore } from "../../../lib/state/slices/stringsetState";
 import { StringsetCard } from "../../../components/stringset/StringsetCard";
 import { StringsetListItem } from "../../../components/stringset/StringsetListItem";
 import { ToolbarPage } from "../../../components/shared/ToolbarPage";
+import { AddButtonResponsive } from "../../../components/shared/AddButtonResponsive";
 
 export const StringsetViewAll = () => {
   const [dataT] = useTranslation("translation", { keyPrefix: "data" });
@@ -26,17 +26,12 @@ export const StringsetViewAll = () => {
     <Fragment>
       <TopbarPage title={dataT("stringsetPlural")}>
         {isAdmin && (
-          <Button
-            variant="contained"
-            color="success"
-            startIcon={<Add />}
-            onClick={createClick}
-          >
-            {interT("create")}
-          </Button>
+          <AddButtonResponsive title={interT("create")} onClick={createClick} />
         )}
       </TopbarPage>
+
       <Divider />
+
       <ToolbarPage searchFieldChange={handleSearch} />
 
       <Grid container spacing={1} sx={{ display: { xs: "none", sm: "flex" } }}>

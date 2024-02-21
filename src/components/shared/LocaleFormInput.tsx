@@ -1,5 +1,4 @@
 import { ChangeEvent, useState } from "react";
-import { useAppSelector } from "../lib/state/hooks";
 import {
   Box,
   FormControl,
@@ -11,10 +10,11 @@ import {
   TextField,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { supportedLanguages } from "../lib/locale/languages";
-import { ITextLocale } from "../models/ITextLocale";
 import { v4 } from "uuid";
 import { Warning } from "@mui/icons-material";
+import { supportedLanguages } from "../../lib/locale/languages";
+import { useAppSelector } from "../../lib/state/hooks";
+import { ITextLocale } from "../../models/ITextLocale";
 
 interface IProps {
   elemId: string;

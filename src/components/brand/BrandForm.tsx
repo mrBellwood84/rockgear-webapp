@@ -9,7 +9,6 @@ import {
 import { IBrand } from "../../models/brand/IBrand";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { LocaleFormInput } from "../LocaleFormInput";
 import { ITextLocale } from "../../models/ITextLocale";
 import { IAlertMessage } from "../../lib/types/alertTypes";
 import { brandApiAgent } from "../../lib/apiAgent/brandApiAgent";
@@ -19,6 +18,7 @@ import { v4 } from "uuid";
 import { useState } from "react";
 import { Close } from "@mui/icons-material";
 import { ComponentLoader } from "../loaders/ComponentLoader";
+import { LocaleFormInput } from "../shared/LocaleFormInput";
 
 interface FormValues {
   name: string;
