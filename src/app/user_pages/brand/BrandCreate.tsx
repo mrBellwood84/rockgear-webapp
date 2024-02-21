@@ -1,43 +1,26 @@
 import { Fragment } from "react";
 import { BrandForm } from "../../../components/brand/BrandForm";
-import { useAppDispatch, useAppSelector } from "../../../lib/state/hooks";
-import { IconButton, Toolbar, Typography } from "@mui/material";
+import { useAppDispatch } from "../../../lib/state/hooks";
 import { brandStore } from "../../../lib/state/slices/brandState";
-import { ArrowBack } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
+import { TopbarPage } from "../../../components/shared/TopbarPage";
 
 export const BrandCreate = () => {
   const [dataT] = useTranslation("translation", { keyPrefix: "data" });
   const [interT] = useTranslation("translation", { keyPrefix: "interactive" });
 
-  const selectedBrand = useAppSelector((state) => state.brand.selected);
   const dispatch = useAppDispatch();
 
   const toMainClick = () => dispatch(brandStore.actions.displayAll());
-  console.warn(
-    "DEV :: BrandCreatePage.tsx has changed name, but file content is not updated"
-  );
 
   return (
     <Fragment>
-      <Toolbar disableGutters>
-        <IconButton onClick={toMainClick} sx={{ mr: 2 }}>
-          <ArrowBack />
-        </IconButton>
-        <Typography variant="h5">
-          {selectedBrand && `${interT("edit")} ${dataT("brand")}`}
-          {!selectedBrand && `${interT("create")} ${dataT("brand")}`}
-        </Typography>
-      </Toolbar>
-
-      <BrandForm
-        brandData={selectedBrand}
-        sx={{
-          ml: "auto",
-          mr: "auto",
-          width: { xs: "95%", sm: 500 },
-        }}
+      <TopbarPage
+        title={`${interT("create")} ${dataT("brand")}`}
+        navBack={toMainClick}
       />
+
+      <BrandForm />
     </Fragment>
   );
 };
