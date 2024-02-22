@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { ITextLocale } from "../../models/ITextLocale";
 import { IBrand } from "../../models/brand/IBrand";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IAlertMessage } from "../../lib/types/alertTypes";
 import { FormContainer } from "../shared/FormContainer";
@@ -27,10 +27,16 @@ export const GuitarForm = () => {
     register,
     handleSubmit,
     setValue,
+    clearErrors,
     formState: { errors },
   } = useForm<FormValues>();
 
-  const updateDescriptionLocales = (locales: ITextLocale[]) => {
+  const handleBrandChange = (brand: IBrand) => {
+    clearErrors("brand");
+    setValue("brand", brand);
+  };
+
+  const handleDescriptionChange = (locales: ITextLocale[]) => {
     const filtered = locales.filter((x) => x.text !== "");
     setValue("description", filtered);
   };
@@ -39,6 +45,10 @@ export const GuitarForm = () => {
     console.log(data);
   };
 
+  useEffect(() => {
+    register("brand", { required: true });
+  });
+
   return (
     <FormContainer
       loading={loading}
@@ -46,7 +56,11 @@ export const GuitarForm = () => {
       removeAlert={() => setAlert(null)}
       onSubmit={handleSubmit(createGuitar)}
     >
-      <BrandSelect id="guitar-brand" />
+      <BrandSelect
+        id="guitar-brand"
+        errorMsg={errors.brand && t("form.brandMissing")}
+        onSelect={handleBrandChange}
+      />
 
       <TextField
         id="guitar-model"
@@ -80,7 +94,7 @@ export const GuitarForm = () => {
       <LocaleFormInput
         elemId="guitar-description-locales"
         label={t("data.description")}
-        setFormValues={updateDescriptionLocales}
+        setFormValues={handleDescriptionChange}
       />
     </FormContainer>
   );

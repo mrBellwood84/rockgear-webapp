@@ -8,9 +8,11 @@ import { useTranslation } from "react-i18next";
 
 interface IProps {
   id: string;
+  errorMsg?: string;
+  onSelect: (brand: IBrand) => void;
 }
 
-export const BrandSelect = ({ id }: IProps) => {
+export const BrandSelect = ({ id, errorMsg, onSelect }: IProps) => {
   const [loading, isLoading] = useState<boolean>(true);
   const dataLoaded = useRef<boolean>(false);
 
@@ -32,8 +34,8 @@ export const BrandSelect = ({ id }: IProps) => {
     isLoading(false);
   };
 
-  const handleSelected = (value: IBrand) => {
-    console.log(value);
+  const handleSelected = (brand: IBrand) => {
+    onSelect!(brand);
   };
 
   useEffect(() => {
@@ -55,6 +57,7 @@ export const BrandSelect = ({ id }: IProps) => {
           variant="standard"
           margin="dense"
           {...params}
+          helperText={errorMsg && errorMsg}
           InputProps={{
             ...params.InputProps,
             endAdornment: (

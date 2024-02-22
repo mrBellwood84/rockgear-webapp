@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { IAlertMessage } from "../../lib/types/alertTypes";
@@ -26,10 +26,16 @@ export const StringsetForm = () => {
     register,
     handleSubmit,
     setValue,
+    clearErrors,
     formState: { errors },
   } = useForm<FormValues>();
 
-  const updateNoteLocales = (locales: ITextLocale[]) => {
+  const handleBrandChange = (brand: IBrand) => {
+    clearErrors("brand");
+    setValue("brand", brand);
+  };
+
+  const handleNotesChange = (locales: ITextLocale[]) => {
     const filtered = locales.filter((x) => x.text !== "");
     setValue("description", filtered);
   };
@@ -38,6 +44,10 @@ export const StringsetForm = () => {
     console.log(data);
   };
 
+  useEffect(() => {
+    register("brand", { required: true });
+  });
+
   return (
     <FormContainer
       loading={loading}
@@ -45,7 +55,11 @@ export const StringsetForm = () => {
       removeAlert={() => setAlert(null)}
       onSubmit={handleSubmit(createStringset)}
     >
-      <BrandSelect id="stringset-brand" />
+      <BrandSelect
+        id="stringset-brand"
+        errorMsg={errors.brand && t("form.brandMissing")}
+        onSelect={handleBrandChange}
+      />
 
       <TextField
         id="stringset-name"
@@ -70,7 +84,7 @@ export const StringsetForm = () => {
       <LocaleFormInput
         elemId="stringset-description-locale"
         label={t("data.description")}
-        setFormValues={updateNoteLocales}
+        setFormValues={handleNotesChange}
       />
     </FormContainer>
   );
