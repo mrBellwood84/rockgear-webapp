@@ -3,18 +3,22 @@ import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "../../../lib/state/hooks";
 import { brandStore } from "../../../lib/state/slices/brandState";
 import { TopbarPage } from "../../../components/shared/TopbarPage";
+import { BrandForm } from "../../../components/brand/BrandForm";
 
-export const BrandViewSingle = () => {
+export const BrandEdit = () => {
   const [dataT] = useTranslation("translation", { keyPrefix: "data" });
-  const selected = useAppSelector((state) => state.brand.selected);
+  const [interT] = useTranslation("translation", { keyPrefix: "interactive" });
   const dispatch = useAppDispatch();
 
   const navigateBack = () => dispatch(brandStore.actions.displayAll());
 
   return (
     <Fragment>
-      <TopbarPage title={dataT("brand")} navBack={navigateBack} />
-      <h3>SELECTED BRAND: {selected?.name}</h3>
+      <TopbarPage
+        title={`${interT("edit")} ${dataT("brand")}`}
+        navBack={navigateBack}
+      />
+      <BrandForm />
     </Fragment>
   );
 };

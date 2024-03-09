@@ -19,7 +19,7 @@ import { ITextLocale } from "../../models/ITextLocale";
 interface IProps {
   elemId: string;
   label: string;
-  localeArr?: ITextLocale[];
+  defaultValues: ITextLocale[];
   setFormValues: (values: ITextLocale[]) => void;
 }
 
@@ -28,16 +28,18 @@ interface ISelectOption {
   alert: boolean;
 }
 
+/** Create empty field values when default values are not provided */
 const createEmptyFieldValues = (): ITextLocale[] => {
   return supportedLanguages.map((x) => {
     return {
-      id: "",
+      id: v4(),
       code: x.code,
       text: "",
     };
   });
 };
 
+/** Create field values from default values */
 const createPopulatedFieldValues = (data: ITextLocale[]): ITextLocale[] => {
   return createEmptyFieldValues().map((fv) => {
     const org = data.find((x) => x.code === fv.code);
@@ -51,6 +53,7 @@ const createPopulatedFieldValues = (data: ITextLocale[]): ITextLocale[] => {
   });
 };
 
+/** Find selected text for textfield input */
 const resolveTextOnSelectChange = (lang: string, fv: ITextLocale[]) => {
   return fv.find((x) => x.code === lang)?.text;
 };
@@ -64,6 +67,7 @@ const createSelectOptions = (locales: ITextLocale[]): ISelectOption[] => {
   });
 };
 
+/** creates alert icon for missing locale if one exists */
 const resolveOptionAlert = (
   locales: ITextLocale[],
   selectOptions: ISelectOption[]
@@ -107,15 +111,15 @@ const resolveHelperText = (
 export const LocaleFormInput = ({
   elemId,
   label,
-  localeArr,
+  defaultValues,
   setFormValues,
 }: IProps) => {
   const [formT] = useTranslation("translation", { keyPrefix: "form" });
   const [langT] = useTranslation("translation", { keyPrefix: "language" });
 
   const currLang = useAppSelector((state) => state.settings.languageSelected);
-  const initFieldValues = localeArr
-    ? createPopulatedFieldValues(localeArr)
+  const initFieldValues = defaultValues
+    ? createPopulatedFieldValues(defaultValues)
     : createEmptyFieldValues();
   const initSelectOptions = createSelectOptions(initFieldValues);
 

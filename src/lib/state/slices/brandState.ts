@@ -21,7 +21,6 @@ export const brandStore = createSlice({
   name: "brand",
   initialState,
   reducers: {
-    /** Set brand data in state. Replace whole data array! */
     addAll: (state, action: PayloadAction<IBrand[]>) => {
       state.currentView = "all";
       state.allData = action.payload;
@@ -54,7 +53,6 @@ export const brandStore = createSlice({
           return null;
         })
         .sort(sortByName);
-      console.log(state.filteredData);
     },
 
     /** Set current view to all. Selected brand is set to null */
@@ -70,7 +68,7 @@ export const brandStore = createSlice({
     /** Sets current view to edit. Require a selected brand to edit */
     displaySingle: (state, action: PayloadAction<IBrand>) => {
       state.selected = action.payload;
-      state.currentView = "single";
+      state.currentView = "edit";
     },
     /** Change brand view in accorance with provided view string */
     changeCurrentView: (state, action: PayloadAction<BaseViewTypes>) => {

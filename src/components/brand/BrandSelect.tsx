@@ -1,10 +1,10 @@
 import { Autocomplete, CircularProgress, TextField } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../lib/state/hooks";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { brandApiAgent } from "../../lib/apiAgent/brandApiAgent";
 import { brandStore } from "../../lib/state/slices/brandState";
 import { IBrand } from "../../models/brand/IBrand";
 import { useTranslation } from "react-i18next";
+import { brandApiAgent } from "../../lib/apiAgent/brandApiAgent";
 
 interface IProps {
   id: string;
@@ -23,7 +23,7 @@ export const BrandSelect = ({ id, errorMsg, onSelect }: IProps) => {
   const loadFromAPI = async () => {
     if (brands.length > 0) return;
     const data = await brandApiAgent.getAll();
-    dispatch(brandStore.actions.addAll(data));
+    dispatch(brandStore.actions.addAll([]));
     return data;
   };
 

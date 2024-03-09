@@ -10,7 +10,8 @@ interface IProps {
 export const GuitarListItem = ({ guitar }: IProps) => {
   const dispatch = useAppDispatch();
 
-  const handleClick = () => dispatch(guitarStore.actions.displaySingle(guitar));
+  const handleEditClick = () =>
+    dispatch(guitarStore.actions.displaySingle(guitar));
 
   const primary = `${guitar.brand.name} ${guitar.model}`;
 
@@ -18,8 +19,7 @@ export const GuitarListItem = ({ guitar }: IProps) => {
     <ListItemBase
       primary={primary}
       secondary={guitar.nickname}
-      allowClick={true}
-      onClick={handleClick}
+      allowAction={true}
     />
   );
 };

@@ -1,9 +1,8 @@
-import { BrandCard } from "../../../components/brand/BrandCard";
 import { ChangeEvent, Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "../../../lib/state/hooks";
 import { brandStore } from "../../../lib/state/slices/brandState";
-import { Grid, List } from "@mui/material";
+import { List } from "@mui/material";
 import { BrandListItem } from "../../../components/brand/BrandListItem";
 import { TopbarPage } from "../../../components/shared/TopbarPage";
 import { ToolbarPage } from "../../../components/shared/ToolbarPage";
@@ -29,8 +28,13 @@ export const BrandViewAll = () => {
         )}
       </TopbarPage>
       <ToolbarPage searchFieldChange={handleSearch} />
+      <List>
+        {brandsFiltered.map((b) => (
+          <BrandListItem key={b.id} brand={b} />
+        ))}
+      </List>
 
-      <Grid container spacing={1} sx={{ display: { xs: "none", sm: "flex" } }}>
+      {/* <Grid container spacing={1} sx={{ display: { xs: "none", sm: "flex" } }}>
         {brandsFiltered.map((b) => (
           <BrandCard key={b.id} brand={b} />
         ))}
@@ -40,7 +44,7 @@ export const BrandViewAll = () => {
         {brandsFiltered.map((b) => (
           <BrandListItem key={b.id} brand={b} />
         ))}
-      </List>
+      </List> */}
     </Fragment>
   );
 };

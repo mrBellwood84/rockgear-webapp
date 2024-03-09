@@ -21,8 +21,7 @@ export const StringsetListItem = ({ stringset }: IProps) => {
     <ListItemBase
       primary={primary}
       secondary={stringset.gauges}
-      allowClick={isAdmin}
-      onClick={handleClick}
+      allowAction={isAdmin}
     />
   );
 };

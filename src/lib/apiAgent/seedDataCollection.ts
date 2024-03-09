@@ -6,7 +6,7 @@ export const brandSeedData: IBrand[] = [
   {
     id: "921a888c-22b5-43fa-9c3a-4893ea1a8310",
     name: "Duesenberg",
-    description: [
+    notes: [
       {
         id: "b0c53746-4e31-4dfe-b2ee-0a5352070995",
         code: "en",
@@ -22,7 +22,7 @@ export const brandSeedData: IBrand[] = [
   {
     id: "0dc1df7b-f9fd-4f04-a241-c86953e6bcd3",
     name: "Charvel",
-    description: [
+    notes: [
       {
         id: "a60745fa-0154-4941-83fd-a9d53ea61be2",
         code: "en",
@@ -38,7 +38,7 @@ export const brandSeedData: IBrand[] = [
   {
     id: "05de4299-8710-4e3c-81ed-38bbd04919fc",
     name: "ErnieBall",
-    description: [
+    notes: [
       {
         id: "8b36b5cb-714e-464a-87b2-3ba8355909fd",
         code: "en",
@@ -54,7 +54,7 @@ export const brandSeedData: IBrand[] = [
   {
     id: "2001741b-08a7-4503-919a-929cfc47d910",
     name: "Elexir",
-    description: [
+    notes: [
       {
         id: "05402519-3a9e-4607-8d1a-ce14b912d20c",
         code: "en",
@@ -75,7 +75,7 @@ export const stringsetSeedData: IStringset[] = [
     brand: {
       id: "05de4299-8710-4e3c-81ed-38bbd04919fc",
       name: "ErnieBall",
-      description: [
+      notes: [
         {
           id: "8b36b5cb-714e-464a-87b2-3ba8355909fd",
           code: "en",
@@ -108,7 +108,7 @@ export const stringsetSeedData: IStringset[] = [
     brand: {
       id: "05de4299-8710-4e3c-81ed-38bbd04919fc",
       name: "ErnieBall",
-      description: [
+      notes: [
         {
           id: "8b36b5cb-714e-464a-87b2-3ba8355909fd",
           code: "en",
@@ -129,7 +129,7 @@ export const stringsetSeedData: IStringset[] = [
     brand: {
       id: "2001741b-08a7-4503-919a-929cfc47d910",
       name: "Elexir",
-      description: [
+      notes: [
         {
           id: "05402519-3a9e-4607-8d1a-ce14b912d20c",
           code: "en",
@@ -165,7 +165,7 @@ export const guitarSeedData: IGuitar[] = [
     brand: {
       id: "921a888c-22b5-43fa-9c3a-4893ea1a8310",
       name: "Duesenberg",
-      description: [
+      notes: [
         {
           id: "b0c53746-4e31-4dfe-b2ee-0a5352070995",
           code: "en",
@@ -199,7 +199,7 @@ export const guitarSeedData: IGuitar[] = [
     brand: {
       id: "921a888c-22b5-43fa-9c3a-4893ea1a8310",
       name: "Duesenberg",
-      description: [
+      notes: [
         {
           id: "b0c53746-4e31-4dfe-b2ee-0a5352070995",
           code: "en",
@@ -232,7 +232,7 @@ export const guitarSeedData: IGuitar[] = [
     brand: {
       id: "0dc1df7b-f9fd-4f04-a241-c86953e6bcd3",
       name: "Charvel",
-      description: [
+      notes: [
         {
           id: "a60745fa-0154-4941-83fd-a9d53ea61be2",
           code: "en",

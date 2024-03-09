@@ -49,13 +49,13 @@ export const DeleteConfirmDialog = ({
       </DialogContent>
 
       <DialogActions>
-        <Button onClick={cancelClick} variant="contained" color="error">
+        <Button onClick={cancelClick} variant="contained" color="secondary">
           {t("cancel")}
         </Button>
         <Button
           onClick={confirmClick}
-          variant="outlined"
-          size="small"
+          variant="text"
+          color="error"
           disabled={!checked}
         >
           {t("delete")}

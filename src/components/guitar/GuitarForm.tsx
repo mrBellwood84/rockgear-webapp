@@ -13,8 +13,8 @@ interface FormValues {
   brand: IBrand;
   model: string;
   serialNumber: string;
-  nickname?: string;
-  description?: ITextLocale[];
+  nickname: string;
+  description: ITextLocale[];
 }
 
 export const GuitarForm = () => {
@@ -27,6 +27,7 @@ export const GuitarForm = () => {
     register,
     handleSubmit,
     setValue,
+    getValues,
     clearErrors,
     formState: { errors },
   } = useForm<FormValues>();
@@ -94,6 +95,7 @@ export const GuitarForm = () => {
       <LocaleFormInput
         elemId="guitar-description-locales"
         label={t("data.description")}
+        defaultValues={getValues("description")}
         setFormValues={handleDescriptionChange}
       />
     </FormContainer>

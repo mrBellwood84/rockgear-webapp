@@ -43,6 +43,7 @@
     "stringset": "Strengesett",
     "stringsetPlural": "Strengesett",
     "description": "Beskrivelse",
+    "notes": "Notater",
     "name": "Navn",
     "model": "Modell",
     "serialnumber": "Serienummer",

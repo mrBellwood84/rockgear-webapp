@@ -7,6 +7,7 @@ import { ComponentLoader } from "../loaders/ComponentLoader";
 
 interface IProps {
   loading: boolean;
+  edit?: boolean;
   alert: IAlertMessage | null;
   removeAlert: () => void;
   onSubmit: () => void;
@@ -15,6 +16,7 @@ interface IProps {
 
 export const FormContainer = ({
   loading,
+  edit = false,
   alert,
   removeAlert,
   onSubmit,
@@ -62,7 +64,7 @@ export const FormContainer = ({
           fullWidth
           size="large"
         >
-          {interT("create")}
+          {edit ? interT("update") : interT("create")}
         </Button>
       </Box>
     </Box>

@@ -13,7 +13,7 @@ interface FormValues {
   brand: IBrand;
   name: string;
   gauges: string;
-  description?: ITextLocale[];
+  description: ITextLocale[];
 }
 
 export const StringsetForm = () => {
@@ -26,6 +26,7 @@ export const StringsetForm = () => {
     register,
     handleSubmit,
     setValue,
+    getValues,
     clearErrors,
     formState: { errors },
   } = useForm<FormValues>();
@@ -84,6 +85,7 @@ export const StringsetForm = () => {
       <LocaleFormInput
         elemId="stringset-description-locale"
         label={t("data.description")}
+        defaultValues={getValues("description")}
         setFormValues={handleNotesChange}
       />
     </FormContainer>

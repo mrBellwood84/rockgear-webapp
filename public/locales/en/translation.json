@@ -43,6 +43,7 @@
     "stringset": "Stringset",
     "stringsetPlural": "Stringsets",
     "description": "Description",
+    "notes": "Notes",
     "name": "Name",
     "model": "Model",
     "serialnumber": "Serialnumber",

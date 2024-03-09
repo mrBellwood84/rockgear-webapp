@@ -4,7 +4,7 @@ import { ContainerLoader } from "../../../components/loaders/ContainerLoader";
 import { GuitarCreate } from "./GuitarCreate";
 import { GuitarViewSingle } from "./GuitarViewSingle";
 import { GuitarViewAll } from "./GuitarViewAll";
-import { GuitarApiAgent } from "../../../lib/apiAgent/guitarApiAgent";
+import { GuitarApiAgent } from "../../../lib/apiAgent/mock_guitarApiAgent";
 import { guitarStore } from "../../../lib/state/slices/guitarState";
 
 export const GuitarViewResolver = () => {

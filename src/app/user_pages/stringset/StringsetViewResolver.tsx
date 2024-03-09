@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useAppSelector } from "../../../lib/state/hooks";
 import { useDispatch } from "react-redux";
-import { stringsetApiAgent } from "../../../lib/apiAgent/stringsetApiAgent";
+import { stringsetApiAgent } from "../../../lib/apiAgent/mock_stringsetApiAgent";
 import { stringsetStore } from "../../../lib/state/slices/stringsetState";
 import { ContainerLoader } from "../../../components/loaders/ContainerLoader";
 import { StringsetViewSingle } from "./StringsetViewSingle";
