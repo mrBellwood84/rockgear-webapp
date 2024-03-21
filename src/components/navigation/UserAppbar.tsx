@@ -1,3 +1,6 @@
+"use client";
+
+import { Menu as MenuIcon } from "@mui/icons-material";
 import {
   AppBar,
   Box,
@@ -7,25 +10,25 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { Menu as MenuIcon } from "@mui/icons-material";
-import { LanguageMenu } from "./LanguageMenu";
-import { PaletteModeMenu } from "./PaletteModeMenu";
+import { Fragment } from "react";
+import { PaletteModeMenu } from "./PaletteModeSelect";
+import { LanguageSelect } from "./LanguageSelect";
 import { UserAccountMenu } from "./UserAccountMenu";
-import { useTranslation } from "react-i18next";
 
 interface IProps {
-  toggleDrawer: () => void;
   sx?: SxProps;
 }
 
-export const UserAppbar = ({ toggleDrawer, sx }: IProps) => {
-  const { t } = useTranslation("translation", { keyPrefix: "nav" });
+export const UserAppbar = ({ sx }: IProps) => {
+  console.warn("DEV :: Translation missing");
+
+  const toggleDrawer = () => {};
 
   return (
-    <Box sx={{ cursor: "default", userSelect: "none", ...sx }}>
-      <AppBar position="static" component={"nav"}>
+    <Box component="nav" sx={{ userSelect: "none" }}>
+      <AppBar position="static">
         <Toolbar>
-          <Tooltip title={t("menu")} arrow>
+          <Tooltip title="DEV :: menu button" arrow>
             <IconButton
               size="large"
               edge="start"
@@ -44,7 +47,7 @@ export const UserAppbar = ({ toggleDrawer, sx }: IProps) => {
               ml: 2,
               color: "inherit",
               textDecoration: "none",
-              fontWeight: 500,
+              fontWeight: 600,
               flexGrow: 1,
             }}
           >
@@ -52,7 +55,7 @@ export const UserAppbar = ({ toggleDrawer, sx }: IProps) => {
           </Typography>
           <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center" }}>
             <PaletteModeMenu />
-            <LanguageMenu />
+            <LanguageSelect />
             <UserAccountMenu />
           </Box>
         </Toolbar>

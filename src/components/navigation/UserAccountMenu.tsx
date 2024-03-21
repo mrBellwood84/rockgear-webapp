@@ -1,4 +1,5 @@
-import { AccountCircle, Logout, Settings } from "@mui/icons-material";
+import { useClientSideCookie } from "@/lib/cookie/clientSideCookies";
+import { AccountCircle, Settings, Logout } from "@mui/icons-material";
 import {
   Avatar,
   Button,
@@ -9,26 +10,33 @@ import {
   MenuItem,
   Tooltip,
 } from "@mui/material";
+import { useRouter } from "next/router";
 import { Fragment, MouseEvent, useState } from "react";
-import { useTranslation } from "react-i18next";
 
 export const UserAccountMenu = () => {
-  const { t } = useTranslation("translation", { keyPrefix: "nav" });
+  console.warn("DEV :: Translation missing");
 
   const [anc, setAnc] = useState<null | HTMLElement>(null);
   const open = Boolean(anc);
   const handleOpen = (e: MouseEvent<HTMLElement>) => setAnc(e.currentTarget);
   const handleClose = () => setAnc(null);
 
-  const avatarSize = 28;
+  const { deleteLogin } = useClientSideCookie();
+
+  const logoutAction = () => {
+    deleteLogin();
+    window.location.replace("/");
+  };
+
+  const avatarSize = 32;
+
   return (
     <Fragment>
-      <Tooltip title={t("accountHelper")} arrow>
+      <Tooltip title="DEV :: USER ACCOUNT" arrow>
         <Button size="small" onClick={handleOpen}>
           <Avatar sx={{ height: avatarSize, width: avatarSize }} />
         </Button>
       </Tooltip>
-
       <Menu
         anchorEl={anc}
         open={open}
@@ -41,20 +49,20 @@ export const UserAccountMenu = () => {
           <ListItemIcon>
             <AccountCircle />
           </ListItemIcon>
-          <ListItemText>{t("profile")}</ListItemText>
+          <ListItemText>DEV :: PROFILE</ListItemText>
         </MenuItem>
         <MenuItem component="a" href="#settings">
           <ListItemIcon>
             <Settings />
           </ListItemIcon>
-          <ListItemText>{t("settings")}</ListItemText>
+          <ListItemText>DEV :: SETTINGS</ListItemText>
         </MenuItem>
         <Divider />
-        <MenuItem component="a" href="#signout">
+        <MenuItem onClick={logoutAction}>
           <ListItemIcon>
             <Logout />
           </ListItemIcon>
-          <ListItemText>{t("logout")}</ListItemText>
+          <ListItemText>DEV :: LOGOUT</ListItemText>
         </MenuItem>
       </Menu>
     </Fragment>
