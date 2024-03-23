@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
-import { MuiThemeProvider } from "../lib/theme/MuiThemeProvider";
 import { StoreProvider } from "@/lib/states/StoreProvider";
 import { ReactNode } from "react";
-import { I18nProviderClient } from "@/lib/locales/client";
+import { CssBaseline } from "@mui/material";
 
 export const metadata: Metadata = {
   title: "RockGear",
@@ -26,7 +25,8 @@ export default function RootLayout({
       <body>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <StoreProvider>
-            <MuiThemeProvider>{children}</MuiThemeProvider>
+            <CssBaseline />
+            {children}
           </StoreProvider>
         </AppRouterCacheProvider>
       </body>

@@ -10,8 +10,6 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { Fragment } from "react";
-import { PaletteModeMenu } from "./PaletteModeSelect";
 import { LanguageSelect } from "./LanguageSelect";
 import { UserAccountMenu } from "./UserAccountMenu";
 
@@ -54,7 +52,6 @@ export const UserAppbar = ({ sx }: IProps) => {
             RockGear
           </Typography>
           <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center" }}>
-            <PaletteModeMenu />
             <LanguageSelect />
             <UserAccountMenu />
           </Box>
