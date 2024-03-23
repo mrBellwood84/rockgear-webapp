@@ -1,0 +1,10 @@
+{
+  "nav": {
+    "languageSelect": "Velg Språk",
+    "menu": "Meny",
+    "profile": "Profil",
+    "settings": "Innstillinger",
+    "signout": "Logg ut",
+    "user": "Bruker"
+  }
+}

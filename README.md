@@ -12,3 +12,5 @@ Web application created with [Next.js]().
 
 - **[jwt-decode](https://www.npmjs.com/package/jwt-decode)**: Used for extracting data from jwt token
 - **[cookies-next](https://www.npmjs.com/package/cookies-next)**: For reading cookies on client side
+
+- **[Flag Icons](https://github.com/lipis/flag-icons)**: SVGs used for language select box

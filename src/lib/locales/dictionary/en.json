@@ -1,0 +1,10 @@
+{
+  "nav": {
+    "languageSelect": "Select language",
+    "menu": "Meny",
+    "profile": "Profile",
+    "settings": "Settings",
+    "signout": "Sign out",
+    "user": "User"
+  }
+}

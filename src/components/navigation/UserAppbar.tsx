@@ -12,21 +12,21 @@ import {
 } from "@mui/material";
 import { LanguageSelect } from "./LanguageSelect";
 import { UserAccountMenu } from "./UserAccountMenu";
+import { useScopedI18n } from "@/lib/locales/client";
 
 interface IProps {
   sx?: SxProps;
 }
 
 export const UserAppbar = ({ sx }: IProps) => {
-  console.warn("DEV :: Translation missing");
-
+  const t = useScopedI18n("nav");
   const toggleDrawer = () => {};
 
   return (
     <Box component="nav" sx={{ userSelect: "none" }}>
       <AppBar position="static">
         <Toolbar>
-          <Tooltip title="DEV :: menu button" arrow>
+          <Tooltip title={t("menu")} arrow>
             <IconButton
               size="large"
               edge="start"

@@ -1,4 +1,5 @@
 import { useClientSideCookie } from "@/lib/cookie/clientSideCookies";
+import { useScopedI18n } from "@/lib/locales/client";
 import { AccountCircle, Settings, Logout } from "@mui/icons-material";
 import {
   Avatar,
@@ -14,7 +15,7 @@ import { useRouter } from "next/router";
 import { Fragment, MouseEvent, useState } from "react";
 
 export const UserAccountMenu = () => {
-  console.warn("DEV :: Translation missing");
+  const t = useScopedI18n("nav");
 
   const [anc, setAnc] = useState<null | HTMLElement>(null);
   const open = Boolean(anc);
@@ -32,7 +33,7 @@ export const UserAccountMenu = () => {
 
   return (
     <Fragment>
-      <Tooltip title="DEV :: USER ACCOUNT" arrow>
+      <Tooltip title={t("user")} arrow>
         <Button size="small" onClick={handleOpen}>
           <Avatar sx={{ height: avatarSize, width: avatarSize }} />
         </Button>
@@ -49,20 +50,20 @@ export const UserAccountMenu = () => {
           <ListItemIcon>
             <AccountCircle />
           </ListItemIcon>
-          <ListItemText>DEV :: PROFILE</ListItemText>
+          <ListItemText>{t("profile")}</ListItemText>
         </MenuItem>
         <MenuItem component="a" href="#settings">
           <ListItemIcon>
             <Settings />
           </ListItemIcon>
-          <ListItemText>DEV :: SETTINGS</ListItemText>
+          <ListItemText>{t("settings")}</ListItemText>
         </MenuItem>
         <Divider />
         <MenuItem onClick={logoutAction}>
           <ListItemIcon>
             <Logout />
           </ListItemIcon>
-          <ListItemText>DEV :: LOGOUT</ListItemText>
+          <ListItemText>{t("signout")}</ListItemText>
         </MenuItem>
       </Menu>
     </Fragment>

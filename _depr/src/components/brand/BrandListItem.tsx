@@ -41,7 +41,6 @@ export const BrandListItem = ({ brand }: IProps) => {
       return;
     }
 
-    console.error("DEV :: Error occured when deleting brand");
     setApiLoading(false);
   };
 

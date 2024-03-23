@@ -3,6 +3,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { StoreProvider } from "@/lib/states/StoreProvider";
 import { ReactNode } from "react";
 import { CssBaseline } from "@mui/material";
+import { LocaleProvider } from "@/lib/locales/LocaleProvider";
 
 export const metadata: Metadata = {
   title: "RockGear",
@@ -19,15 +20,14 @@ export default function RootLayout({
   children,
   params: { locale },
 }: Readonly<IProps>) {
-  console.log("--DEV :: Locale at page load:", locale);
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <StoreProvider>
-            <CssBaseline />
-            {children}
-          </StoreProvider>
+          <CssBaseline />
+          <LocaleProvider locale={locale}>
+            <StoreProvider>{children}</StoreProvider>
+          </LocaleProvider>
         </AppRouterCacheProvider>
       </body>
     </html>
