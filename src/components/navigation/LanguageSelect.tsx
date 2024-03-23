@@ -1,5 +1,4 @@
-import { useClientSideCookie } from "@/lib/cookie/clientSideCookies";
-import { useLanguageStorage } from "@/lib/localStorage/languageStorage";
+import { useSettingsStorage } from "@/lib/localStorage/settingsStorage";
 import {
   useChangeLocale,
   useCurrentLocale,
@@ -31,17 +30,20 @@ export const LanguageSelect = () => {
 
   const currLang = useCurrentLocale();
   const changeLang = useChangeLocale();
-  const { setLanguage } = useLanguageStorage();
+  const { getSettings, setSettings } = useSettingsStorage();
 
   const selectLangClick = (code: LanguageSupportType) => {
+    const settings = getSettings();
+    settings.language = code;
+    setSettings(settings);
     changeLang(code);
-    setLanguage(code);
   };
 
   return (
     <Fragment>
       <Tooltip title={t("languageSelect")}>
         <Button
+          size="large"
           onClick={handleOpen}
           startIcon={<Language />}
           sx={{ color: "inherit", fontWeight: 600 }}

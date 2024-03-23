@@ -8,6 +8,7 @@ import {
   SettingsBrightness,
 } from "@mui/icons-material";
 import {
+  Button,
   IconButton,
   ListItemIcon,
   ListItemText,
@@ -56,9 +57,13 @@ export const ThemeSelect = () => {
   return (
     <Fragment>
       <Tooltip title={t("themeSelect")}>
-        <IconButton onClick={handleOpen} sx={{ color: "inherit", mr: 1 }}>
-          <BrightnessMedium />
-        </IconButton>
+        <Button
+          size="large"
+          onClick={handleOpen}
+          sx={{ color: "inherit", mr: 1 }}
+        >
+          <BrightnessMedium fontSize="medium" />
+        </Button>
       </Tooltip>
       <Menu
         anchorEl={anc}

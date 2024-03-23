@@ -44,15 +44,22 @@ export const UserAppbar = ({ sx }: IProps) => {
             noWrap
             sx={{
               ml: 2,
+              p: 1,
               color: "inherit",
               textDecoration: "none",
               fontWeight: 600,
-              flexGrow: 1,
+              letterSpacing: 2.5,
             }}
           >
             RockGear
           </Typography>
-          <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center" }}>
+          <Box
+            sx={{
+              ml: "auto",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <ThemeSelect />
             <LanguageSelect />
             <UserAccountMenu />

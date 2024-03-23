@@ -3,7 +3,7 @@
 import { ReactNode, useRef } from "react";
 import { I18nProviderClient, useChangeLocale } from "./client";
 import { LanguageSupportType } from "./language";
-import { useLanguageStorage } from "../localStorage/languageStorage";
+import { useSettingsStorage } from "../localStorage/settingsStorage";
 
 interface IProps {
   children: ReactNode;
@@ -12,13 +12,13 @@ interface IProps {
 
 export const LocaleProvider = ({ children, locale }: IProps) => {
   const languageResolved = useRef<boolean>(false);
-  const { getLanguage } = useLanguageStorage();
+  const { getSettings } = useSettingsStorage();
   const changeLocale = useChangeLocale();
 
   const resolveLanguage = () => {
     if (languageResolved.current) return;
     languageResolved.current = true;
-    const lang = getLanguage();
+    const lang = getSettings().language;
     if (!lang) return;
     changeLocale(lang);
   };
