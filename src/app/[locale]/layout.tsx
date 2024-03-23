@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { StoreProvider } from "@/lib/states/StoreProvider";
 import { ReactNode } from "react";
-import { CssBaseline } from "@mui/material";
 import { LocaleProvider } from "@/lib/locales/LocaleProvider";
+import { AppThemeProvider } from "@/lib/AppThemeProvider";
 
 export const metadata: Metadata = {
   title: "RockGear",
@@ -23,11 +23,12 @@ export default function RootLayout({
   return (
     <html lang={locale}>
       <body>
-        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <CssBaseline />
-          <LocaleProvider locale={locale}>
-            <StoreProvider>{children}</StoreProvider>
-          </LocaleProvider>
+        <AppRouterCacheProvider>
+          <AppThemeProvider>
+            <LocaleProvider locale={locale}>
+              <StoreProvider>{children}</StoreProvider>
+            </LocaleProvider>
+          </AppThemeProvider>
         </AppRouterCacheProvider>
       </body>
     </html>

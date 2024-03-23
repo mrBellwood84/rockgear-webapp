@@ -5,7 +5,10 @@ import {
   useCurrentLocale,
   useScopedI18n,
 } from "@/lib/locales/client";
-import { LanguageSupported, supportedLanguages } from "@/lib/locales/language";
+import {
+  LanguageSupportType,
+  supportedLanguages,
+} from "@/lib/locales/language";
 import { Language } from "@mui/icons-material";
 import {
   Button,
@@ -30,7 +33,7 @@ export const LanguageSelect = () => {
   const changeLang = useChangeLocale();
   const { setLanguage } = useLanguageStorage();
 
-  const selectLangClick = (code: LanguageSupported) => {
+  const selectLangClick = (code: LanguageSupportType) => {
     changeLang(code);
     setLanguage(code);
   };

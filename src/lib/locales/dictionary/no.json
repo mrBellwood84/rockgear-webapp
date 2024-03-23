@@ -5,6 +5,12 @@
     "profile": "Profil",
     "settings": "Innstillinger",
     "signout": "Logg ut",
+    "theme": {
+      "dark": "Mørk",
+      "light": "Lys",
+      "system": "System"
+    },
+    "themeSelect": "Velg fargetema",
     "user": "Bruker"
   }
 }

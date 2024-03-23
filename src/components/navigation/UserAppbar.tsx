@@ -13,6 +13,7 @@ import {
 import { LanguageSelect } from "./LanguageSelect";
 import { UserAccountMenu } from "./UserAccountMenu";
 import { useScopedI18n } from "@/lib/locales/client";
+import { ThemeSelect } from "./ThemeSelect";
 
 interface IProps {
   sx?: SxProps;
@@ -52,6 +53,7 @@ export const UserAppbar = ({ sx }: IProps) => {
             RockGear
           </Typography>
           <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center" }}>
+            <ThemeSelect />
             <LanguageSelect />
             <UserAccountMenu />
           </Box>

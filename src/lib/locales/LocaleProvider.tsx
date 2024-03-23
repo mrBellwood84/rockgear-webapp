@@ -2,12 +2,12 @@
 
 import { ReactNode, useRef } from "react";
 import { I18nProviderClient, useChangeLocale } from "./client";
-import { LanguageSupported } from "./language";
+import { LanguageSupportType } from "./language";
 import { useLanguageStorage } from "../localStorage/languageStorage";
 
 interface IProps {
   children: ReactNode;
-  locale: LanguageSupported;
+  locale: LanguageSupportType | string;
 }
 
 export const LocaleProvider = ({ children, locale }: IProps) => {

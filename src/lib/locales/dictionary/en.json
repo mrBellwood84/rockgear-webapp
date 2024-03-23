@@ -5,6 +5,12 @@
     "profile": "Profile",
     "settings": "Settings",
     "signout": "Sign out",
+    "theme": {
+      "dark": "Dark",
+      "light": "Light",
+      "system": "System"
+    },
+    "themeSelect": "Select color theme",
     "user": "User"
   }
 }

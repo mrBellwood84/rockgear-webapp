@@ -1,14 +1,14 @@
-import { LanguageSupported } from "../locales/language";
+import { LanguageSupportType } from "../locales/language";
 
 const key = "language";
 
 export const useLanguageStorage = () => {
   return {
-    setLanguage: (code: LanguageSupported) => {
+    setLanguage: (code: LanguageSupportType) => {
       localStorage.setItem(key, code);
     },
     getLanguage: () => {
-      return localStorage.getItem(key) as LanguageSupported;
+      return localStorage.getItem(key) as LanguageSupportType;
     },
   };
 };

@@ -1,10 +1,10 @@
 import no from "flag-icons/flags/4x3/no.svg";
 import en from "flag-icons/flags/4x3/gb.svg";
 
-export type LanguageSupported = "en" | "no";
+export type LanguageSupportType = "en" | "no";
 
 export interface ILanguageSelectOption {
-  code: LanguageSupported;
+  code: LanguageSupportType;
   name: string;
   svg: string;
 }
