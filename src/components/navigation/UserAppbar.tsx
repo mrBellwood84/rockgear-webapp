@@ -16,12 +16,11 @@ import { useScopedI18n } from "@/lib/locales/client";
 import { ThemeSelect } from "./ThemeSelect";
 
 interface IProps {
-  sx?: SxProps;
+  menuClick: () => void;
 }
 
-export const UserAppbar = ({ sx }: IProps) => {
+export const UserAppbar = ({ menuClick }: IProps) => {
   const t = useScopedI18n("nav");
-  const toggleDrawer = () => {};
 
   return (
     <Box component="nav" sx={{ userSelect: "none" }}>
@@ -32,7 +31,7 @@ export const UserAppbar = ({ sx }: IProps) => {
               size="large"
               edge="start"
               color="inherit"
-              onClick={toggleDrawer}
+              onClick={menuClick}
             >
               <MenuIcon />
             </IconButton>
@@ -40,7 +39,7 @@ export const UserAppbar = ({ sx }: IProps) => {
           <Typography
             variant="h5"
             component="a"
-            href="/"
+            href="/dashboard"
             noWrap
             sx={{
               ml: 2,

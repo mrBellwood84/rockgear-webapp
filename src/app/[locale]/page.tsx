@@ -7,8 +7,7 @@ const Home = async () => {
   const { getRole } = useServerSideCookie();
   const userRole = getRole();
 
-  if (userRole === "admin") redirect("/admin");
-  if (userRole === "user") redirect("/user");
+  if (userRole) redirect("/dashboard");
 
   return (
     <Fragment>

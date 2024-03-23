@@ -1,7 +1,13 @@
 {
   "nav": {
+    "close": "Lukk",
     "languageSelect": "Velg Språk",
+    "link": {
+      "brands": "Merker",
+      "guitars": "Gitarer"
+    },
     "menu": "Meny",
+    "open": "Åpne",
     "profile": "Profil",
     "settings": "Innstillinger",
     "signout": "Logg ut",

@@ -4,8 +4,8 @@ import { StoreProvider } from "@/lib/states/StoreProvider";
 import { ReactNode, Suspense } from "react";
 import { LocaleProvider } from "@/lib/locales/LocaleProvider";
 import { AppThemeProvider } from "@/lib/AppThemeProvider";
-import { PageLoader } from "@/components/loader/PageLoader";
-import MainLoadingPage from "./loading";
+import { useServerSideCookie } from "@/lib/cookie/serverSideCookies";
+import { UserNavigation } from "@/components/navigation/UserNavigation";
 
 export const metadata: Metadata = {
   title: "RockGear",
@@ -13,27 +13,51 @@ export const metadata: Metadata = {
     "Manage maintenance of guitars, amplifiers and other music instruments with RockGear",
 };
 
-interface IProps {
+interface IParentProps {
   children: ReactNode;
   params: { locale: string };
 }
 
+interface IChildProps {
+  children: ReactNode;
+}
+
+const NoUserLayout = ({ children }: IChildProps) => {
+  return (
+    <div>
+      <p>No users here</p>
+      {children}
+    </div>
+  );
+};
+
+const UserLayout = ({ children }: IChildProps) => {
+  return (
+    <div>
+      <UserNavigation />
+      {children}
+    </div>
+  );
+};
+
 export default function RootLayout({
   children,
   params: { locale },
-}: Readonly<IProps>) {
+}: IParentProps) {
+  const user = useServerSideCookie().getRole();
   return (
     <html lang={locale}>
       <body>
-        <Suspense fallback={<MainLoadingPage />}>
-          <AppRouterCacheProvider>
-            <AppThemeProvider>
-              <LocaleProvider locale={locale}>
-                <StoreProvider>{children}</StoreProvider>
-              </LocaleProvider>
-            </AppThemeProvider>
-          </AppRouterCacheProvider>
-        </Suspense>
+        <AppRouterCacheProvider>
+          <AppThemeProvider>
+            <LocaleProvider locale={locale}>
+              <StoreProvider>
+                {user && <UserLayout> {children} </UserLayout>}
+                {!user && <NoUserLayout> {children} </NoUserLayout>}
+              </StoreProvider>
+            </LocaleProvider>
+          </AppThemeProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

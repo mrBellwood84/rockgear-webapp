@@ -1,7 +1,13 @@
 {
   "nav": {
+    "close": "Close",
     "languageSelect": "Select language",
+    "link": {
+      "brands": "Brands",
+      "guitars": "Guitars"
+    },
     "menu": "Meny",
+    "open": "Open",
     "profile": "Profile",
     "settings": "Settings",
     "signout": "Sign out",

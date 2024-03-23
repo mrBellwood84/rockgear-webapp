@@ -11,7 +11,6 @@ import {
   MenuItem,
   Tooltip,
 } from "@mui/material";
-import { useRouter } from "next/router";
 import { Fragment, MouseEvent, useState } from "react";
 
 export const UserAccountMenu = () => {

@@ -1,3 +1,5 @@
+"use client";
+
 import { Box } from "@mui/material";
 import { Spinner, produceSpinnerProps } from "./_loadercode";
 import { useSettingsStorage } from "@/lib/localStorage/settingsStorage";

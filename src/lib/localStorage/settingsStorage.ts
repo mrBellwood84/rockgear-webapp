@@ -1,3 +1,5 @@
+"use client";
+
 import { ISettings } from "../models/ISettings";
 
 const SETTING_KEY = "settings";
