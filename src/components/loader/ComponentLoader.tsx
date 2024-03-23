@@ -1,6 +1,6 @@
 import { Box, SxProps, Typography } from "@mui/material";
-import { useAppSelector } from "../../lib/state/hooks";
 import { produceSpinnerProps, Spinner } from "./_loadercode";
+import { useSettingsStorage } from "@/lib/localStorage/settingsStorage";
 
 interface IProps {
   text?: string;
@@ -9,7 +9,8 @@ interface IProps {
 }
 
 export const ComponentLoader = ({ text, spinnerCount = 3, sx }: IProps) => {
-  const theme = useAppSelector((state) => state.settings.themeMode);
+  const theme = useSettingsStorage().getSettings().theme ?? "light";
+
   const spinners = produceSpinnerProps(spinnerCount);
 
   const fgDarkmode = "#3c2969";

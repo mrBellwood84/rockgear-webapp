@@ -1,12 +1,11 @@
-import { Box, Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
-import { useAppSelector } from "../../lib/state/hooks";
+import { Box } from "@mui/material";
 import { Spinner, produceSpinnerProps } from "./_loadercode";
+import { useSettingsStorage } from "@/lib/localStorage/settingsStorage";
 
 export const PageLoader = () => {
+  const theme = useSettingsStorage().getSettings().theme ?? "light";
+
   const spinners = produceSpinnerProps(13);
-  const theme = useAppSelector((state) => state.settings.themeMode);
-  const { t } = useTranslation("translation", { keyPrefix: "interactive" });
 
   const fgDarkmode = "#3c2969";
   const bgDarkmode = "#121212";
@@ -17,6 +16,8 @@ export const PageLoader = () => {
   const background = theme === "light" ? bgLightmode : bgDarkmode;
   const foreground = theme === "light" ? fgLightmode : fgDarkmode;
   const textColor = theme === "light" ? bgDarkmode : fgLightmode;
+
+  let keyItt = 0;
 
   return (
     <Box
@@ -35,20 +36,12 @@ export const PageLoader = () => {
         overflow: "hidden",
       }}
     >
-      <Typography
-        variant="h3"
-        sx={{ color: textColor, letterSpacing: 5, zIndex: 2 }}
-      >
-        {t("loading")}
-      </Typography>
-      <Typography
-        variant="h5"
-        sx={{ color: textColor, letterSpacing: 5, zIndex: 2 }}
-      >
-        {t("waitPolite")}
-      </Typography>
       {spinners.map((p) => (
-        <Spinner {...p} color={foreground} />
+        <Spinner
+          key={`pageloader-spinner-${keyItt++}`}
+          {...p}
+          color={foreground}
+        />
       ))}
     </Box>
   );

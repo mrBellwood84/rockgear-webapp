@@ -1,5 +1,9 @@
-const Loading = () => {
-  return <h1>Loading</h1>;
+"use client";
+
+import { PageLoader } from "@/components/loader/PageLoader";
+
+const MainLoadingPage = () => {
+  return <PageLoader />;
 };
 
-export default Loading;
+export default MainLoadingPage;

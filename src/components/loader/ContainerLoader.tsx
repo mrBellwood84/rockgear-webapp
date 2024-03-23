@@ -1,11 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import { Spinner, produceSpinnerProps } from "./_loadercode";
-import { useAppSelector } from "../../lib/state/hooks";
-import { useTranslation } from "react-i18next";
+import { useSettingsStorage } from "@/lib/localStorage/settingsStorage";
 
 export const ContainerLoader = () => {
-  const theme = useAppSelector((state) => state.settings.themeMode);
-  const { t } = useTranslation("translation", { keyPrefix: "interactive" });
+  const theme = useSettingsStorage().getSettings().theme ?? "light";
   const spinners = produceSpinnerProps(7);
 
   const fgDarkmode = "#3c2969";
@@ -31,18 +29,6 @@ export const ContainerLoader = () => {
         overflow: "hidden",
       }}
     >
-      <Typography
-        variant="h3"
-        sx={{ color: textColor, letterSpacing: 5, zIndex: 2 }}
-      >
-        {t("loading")}
-      </Typography>
-      <Typography
-        variant="h5"
-        sx={{ color: textColor, letterSpacing: 5, zIndex: 2 }}
-      >
-        {t("waitPolite")}
-      </Typography>
       {spinners.map((p) => (
         <Spinner key={`spinner-${keyItt++}`} {...p} color={foreground} />
       ))}

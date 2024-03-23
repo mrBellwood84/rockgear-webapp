@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { StoreProvider } from "@/lib/states/StoreProvider";
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import { LocaleProvider } from "@/lib/locales/LocaleProvider";
 import { AppThemeProvider } from "@/lib/AppThemeProvider";
+import { PageLoader } from "@/components/loader/PageLoader";
+import MainLoadingPage from "./loading";
 
 export const metadata: Metadata = {
   title: "RockGear",
@@ -23,13 +25,15 @@ export default function RootLayout({
   return (
     <html lang={locale}>
       <body>
-        <AppRouterCacheProvider>
-          <AppThemeProvider>
-            <LocaleProvider locale={locale}>
-              <StoreProvider>{children}</StoreProvider>
-            </LocaleProvider>
-          </AppThemeProvider>
-        </AppRouterCacheProvider>
+        <Suspense fallback={<MainLoadingPage />}>
+          <AppRouterCacheProvider>
+            <AppThemeProvider>
+              <LocaleProvider locale={locale}>
+                <StoreProvider>{children}</StoreProvider>
+              </LocaleProvider>
+            </AppThemeProvider>
+          </AppRouterCacheProvider>
+        </Suspense>
       </body>
     </html>
   );
