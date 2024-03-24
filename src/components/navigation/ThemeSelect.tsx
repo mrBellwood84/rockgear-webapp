@@ -1,6 +1,6 @@
-import { useSettingsStorage } from "@/lib/localStorage/settingsStorage";
+import { useClientSideCookie } from "@/lib/cookie/clientSideCookies";
 import { useScopedI18n } from "@/lib/locales/client";
-import { ThemeOptionType } from "@/lib/theme";
+import { ThemeOptionType } from "@/lib/theme/theme";
 import {
   BrightnessMedium,
   DarkMode,
@@ -15,6 +15,7 @@ import {
   Menu,
   MenuItem,
   Tooltip,
+  useMediaQuery,
 } from "@mui/material";
 import { Fragment, MouseEvent, ReactElement, useState } from "react";
 
@@ -40,7 +41,9 @@ const menuItems: IMenuItem[] = [
 
 export const ThemeSelect = () => {
   const t = useScopedI18n("nav");
-  const { getSettings, setSettings } = useSettingsStorage();
+  const { getSettings, setSettings } = useClientSideCookie();
+
+  const clientPreferDark = useMediaQuery("(prefers-color-scheme: dark)");
 
   const [anc, setAnc] = useState<null | HTMLElement>(null);
   const open = Boolean(anc);
@@ -48,9 +51,12 @@ export const ThemeSelect = () => {
   const handleClose = () => setAnc(null);
 
   const setThemeClick = (option: ThemeOptionType) => {
-    const settings = getSettings();
-    settings.theme = option;
-    setSettings(settings);
+    const cookieSettings = getSettings();
+    cookieSettings.systemPreferDark = clientPreferDark;
+    cookieSettings.themeOptionSelected = option;
+    cookieSettings.themeUsed =
+      option !== "system" ? option : clientPreferDark ? "dark" : "light";
+    setSettings(cookieSettings);
     location.reload();
   };
 

@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { settingsStore } from "./configs/settingsSlice";
+import { settingsStore } from "./stores/settingsStore";
 
 export const createStore = () => {
   return configureStore({

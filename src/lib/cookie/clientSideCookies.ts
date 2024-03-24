@@ -1,13 +1,8 @@
 import { deleteCookie, getCookie, setCookie } from "cookies-next";
 import { ILoginResponseDTO } from "../models/account/ILoginResponseDTO";
 import { jwtDecode } from "jwt-decode";
-import { LanguageSupported } from "../locales/language";
-
-const keys = {
-  language: "language",
-  role: "role",
-  token: "token",
-};
+import { ISettings } from "../models/ISettings";
+import { cookieKeys } from "./cookieKeys";
 
 const doSetCookie = (key: string, value: string, expire: Date) => {
   setCookie(key, value, {
@@ -16,20 +11,37 @@ const doSetCookie = (key: string, value: string, expire: Date) => {
   });
 };
 
+const createExpireDate = (days: number = 7) => {
+  const date = new Date();
+  date.setDate(date.getDate() + 7);
+  return date;
+};
+
 export const useClientSideCookie = () => {
   return {
     setLogin: (dto: ILoginResponseDTO) => {
       const decoded = jwtDecode(dto.token);
       const expire = new Date(decoded.exp! * 1000);
-      doSetCookie(keys.role, dto.role, expire);
-      doSetCookie(keys.token, dto.token, expire);
-    },
-    deleteLogin: () => {
-      deleteCookie(keys.role);
-      deleteCookie(keys.token);
+      doSetCookie(cookieKeys.role, dto.role, expire);
+      doSetCookie(cookieKeys.token, dto.token, expire);
     },
 
-    getRole: () => getCookie(keys.role),
-    getToken: () => getCookie(keys.token),
+    setSettings: (settings: ISettings) => {
+      const dataStr = JSON.stringify(settings);
+      doSetCookie(cookieKeys.settings, dataStr, createExpireDate());
+    },
+
+    deleteLogin: () => {
+      deleteCookie(cookieKeys.role);
+      deleteCookie(cookieKeys.token);
+    },
+
+    getRole: () => getCookie(cookieKeys.role),
+    getToken: () => getCookie(cookieKeys.token),
+
+    getSettings: () => {
+      const rawData = getCookie(cookieKeys.settings) ?? "{}";
+      return JSON.parse(rawData) as ISettings;
+    },
   };
 };

@@ -1,7 +1,9 @@
 import { LanguageSupportType } from "../locales/language";
-import { ThemeOptionType } from "../theme";
+import { ThemeOptionType, ThemeType } from "../theme/theme";
 
 export interface ISettings {
   language?: LanguageSupportType;
-  theme?: ThemeOptionType;
+  themeOptionSelected?: ThemeOptionType;
+  themeUsed?: ThemeType;
+  systemPreferDark?: boolean;
 }

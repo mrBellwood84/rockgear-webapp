@@ -1,15 +1,14 @@
 "use client";
 
-import { useSettingsStorage } from "@/lib/localStorage/settingsStorage";
 import { useScopedI18n } from "@/lib/locales/client";
 import { INavLink } from "@/lib/models/INavlink";
+import { useAppSelector } from "@/lib/states/hooks";
 import {
   Avatar,
   ListItem,
   ListItemAvatar,
   ListItemButton,
   ListItemText,
-  useMediaQuery,
 } from "@mui/material";
 
 interface IProps extends INavLink {}
@@ -17,10 +16,7 @@ interface IProps extends INavLink {}
 export const UserDrawerItem = ({ textKey, href }: IProps) => {
   const t = useScopedI18n("nav.link");
 
-  const settingsTheme = useSettingsStorage().getSettings().theme ?? "system";
-  const perferDark = useMediaQuery("(prefers-color-scheme: dark)");
-  const theme =
-    settingsTheme !== "system" ? settingsTheme : perferDark ? "dark" : "light";
+  const theme = useAppSelector((state) => state.settings.themeUsed);
 
   return (
     <ListItem disablePadding>
