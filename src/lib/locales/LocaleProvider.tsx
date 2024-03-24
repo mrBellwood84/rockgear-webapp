@@ -1,9 +1,9 @@
 "use client";
 
-import { ReactNode, useRef } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { I18nProviderClient, useChangeLocale } from "./client";
-import { LanguageSupportType } from "./language";
-import { useSettingsStorage } from "../localStorage/settingsStorage";
+import { LanguageSupportType, languagesSupported } from "./language";
+import { useClientSideCookie } from "../cookie/clientSideCookies";
 
 interface IProps {
   children: ReactNode;
@@ -11,19 +11,20 @@ interface IProps {
 }
 
 export const LocaleProvider = ({ children, locale }: IProps) => {
-  const languageResolved = useRef<boolean>(false);
-  const { getSettings } = useSettingsStorage();
   const changeLocale = useChangeLocale();
+  const { getSettings } = useClientSideCookie();
 
-  const resolveLanguage = () => {
-    if (languageResolved.current) return;
-    languageResolved.current = true;
-    const lang = getSettings().language;
-    if (!lang) return;
+  const resolveLocaleOnPageLoad = () => {
+    const selectedLocale = getSettings().language ?? navigator.language;
+    const supported = languagesSupported.includes(selectedLocale);
+    const lang = (supported ? selectedLocale : "en") as LanguageSupportType;
+    if (lang === locale) return;
     changeLocale(lang);
   };
 
-  resolveLanguage();
+  useEffect(() => {
+    resolveLocaleOnPageLoad();
+  });
 
   return <I18nProviderClient locale={locale}>{children}</I18nProviderClient>;
 };

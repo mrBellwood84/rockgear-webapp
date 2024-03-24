@@ -2,6 +2,7 @@ import no from "flag-icons/flags/4x3/no.svg";
 import en from "flag-icons/flags/4x3/gb.svg";
 
 export type LanguageSupportType = "en" | "no";
+export const languagesSupported = ["en", "no"];
 
 export interface ILanguageSelectOption {
   code: LanguageSupportType;

@@ -1,4 +1,4 @@
-import { useSettingsStorage } from "@/lib/localStorage/settingsStorage";
+import { useClientSideCookie } from "@/lib/cookie/clientSideCookies";
 import {
   useChangeLocale,
   useCurrentLocale,
@@ -27,15 +27,15 @@ export const LanguageSelect = () => {
   const open = Boolean(anc);
   const handleOpen = (e: MouseEvent<HTMLElement>) => setAnc(e.currentTarget);
   const handleClose = () => setAnc(null);
+  const { getSettings, setSettings } = useClientSideCookie();
 
   const currLang = useCurrentLocale();
   const changeLang = useChangeLocale();
-  const { getSettings, setSettings } = useSettingsStorage();
 
   const selectLangClick = (code: LanguageSupportType) => {
-    const settings = getSettings();
-    settings.language = code;
-    setSettings(settings);
+    const cookieSettings = getSettings();
+    cookieSettings.language = code;
+    setSettings(cookieSettings);
     changeLang(code);
   };
 
